@@ -2273,7 +2273,7 @@ input, select, textarea {
 	}
 
 		body.homepage #header h1 {
-			font-size: 4em;
+			font-size: 2em;
 		}
 
 		body.homepage #header:after {
@@ -3169,7 +3169,7 @@ input, select, textarea {
 }
 
 article.special header {
-  margin-bottom: 4rem; /* spazio tra titolo e immagine */
+  margin-bottom: 2rem; /* spazio tra titolo e immagine */
   text-align: center; /* allinea i titoli */
 }
 
@@ -3194,4 +3194,9 @@ article.special header {
 .image-wrapper img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image.no-hover img:hover {
+  transform: none;
+  box-shadow: none;
 }
