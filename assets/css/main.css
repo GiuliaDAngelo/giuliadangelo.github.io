@@ -3200,3 +3200,53 @@ article.special header {
   transform: none;
   box-shadow: none;
 }
+
+.video-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2em;
+	margin-top: 2em;
+}
+
+.video-card {
+	background-color: white;
+	padding: 1em;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+
+.video-card h3 {
+	margin-bottom: 0.5em;
+	text-align: center;
+	color: #000000;
+}
+
+.video-container {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%; /* 16:9 aspect ratio */
+	height: 0;
+	overflow: hidden;
+	border-radius: 6px;
+}
+
+.video-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.youtube-icon {
+	font-size: 3em;
+	color: #ff0000;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	display: inline-block;
+}
+
+.youtube-icon:hover {
+	transform: scale(1.2);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
