@@ -2372,6 +2372,10 @@ input, select, textarea {
 				#nav > ul > li > ul {
 					display: none;
 				}
+				#nav > ul > li > a {
+				  color: #1C0920; /* default text color */
+				  text-decoration: none;
+				}
 
 	.dropotron {
 		background: rgba(255, 255, 255, 0.975);
@@ -3205,29 +3209,34 @@ article.special header {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2em;
-	margin-top: 2em;
 }
 
 .video-card {
-	background-color: white;
+	background-color: #fff;
 	padding: 1em;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	overflow-wrap: break-word;  /* Ensure text wraps inside card */
+	word-wrap: break-word;
+	hyphens: auto;
 }
 
 .video-card h3 {
+	margin-top: 0em;
 	margin-bottom: 0.5em;
+	font-size: 1.2em;
 	text-align: center;
-	color: #000000;
 }
 
 .video-container {
+	margin-top: 0em;
 	position: relative;
 	width: 100%;
 	padding-bottom: 56.25%; /* 16:9 aspect ratio */
 	height: 0;
 	overflow: hidden;
-	border-radius: 6px;
+	font-size: clamp(1rem, 2vw, 1.5rem);
+
 }
 
 .video-container iframe {
@@ -3236,17 +3245,38 @@ article.special header {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	border: 0;
+	border: none;
 }
+
+.video-card p {
+	margin-top: 0.8em;
+	font-size: 0.95em;
+	line-height: 1.4em;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+
 
 .youtube-icon {
 	font-size: 3em;
 	color: #ff0000;
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	display: inline-block;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	margin-bottom: .5em;
 }
 
 .youtube-icon:hover {
 	transform: scale(1.2);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	/*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);*/
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
 }
+
+
+
+
+

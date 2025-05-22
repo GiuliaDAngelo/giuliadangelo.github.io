@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>No Sidebar - Helios by HTML5 UP</title>
+	<title>Projects</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -94,8 +94,7 @@
 								allowfullscreen>
 							</iframe>
 						</div>
-						<p><strong>Event-driven Proto-object based saliency in 3D space to attract a robot’s attention</strong>
-								Scientific Reports; DOI:10.1038/s41598-022-11723-62022</p>
+						<p><strong>Event-driven Proto-object based saliency in 3D space to attract a robot’s attention</strong>Scientific Reports; DOI:10.1038/s41598-022-11723-62022</p>
 					</div>
 
 					<div class="video-card">
@@ -111,7 +110,7 @@
 					</div>
 
 					<div class="video-card">
-						<h3>A neuromorphic electronic artist</h3>
+						<h3>A neuromorphic artist</h3>
 						<div class="video-container">
 							<iframe src="https://www.youtube.com/embed/uHqKxMAL9pI?si=WJbPBcwQ_yRMo8yB"
 								title="YouTube video player"
@@ -169,5 +168,20 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+
+	<script>
+	function resizeHeadings() {
+	  document.querySelectorAll('.video-card').forEach(card => {
+		const h3 = card.querySelector('h3');
+		if (h3) {
+		  const width = card.offsetWidth;
+		  h3.style.fontSize = (width / 15) + 'px'; // Adjust divisor to control size
+		}
+	  });
+	}
+
+	window.addEventListener('load', resizeHeadings);
+	window.addEventListener('resize', resizeHeadings);
+	</script>
 </body>
 </html>

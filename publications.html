@@ -1,11 +1,45 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>No Sidebar - Helios by HTML5 UP</title>
+	<title>Publications</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<style>
+	/* Target BibBase publication entries */
+	.bibbase_paper {
+		position: relative;
+		padding-left: 1.4em;
+		margin-bottom: 1em;
+	}
+
+	/* Simulated bullet point */
+	.bibbase_paper::before {
+		content: "•";
+		position: absolute;
+		left: 0;
+		color: #444;
+		font-size: 1.2em;
+		line-height: 1;
+		top: 0.15em;
+	}
+	.button.scholar-button {
+	  background: rgba(128, 128, 128, 1);
+	  /*border: 2px solid #ccc;*/
+	  color: #ccc;
+	  font-size: 0.85em;
+	  padding: 0.4em 1.2em;
+	  text-transform: none;
+	  transition: all 0.3s ease;
+	}
+	.button.scholar-button:hover {
+	  background: rgba(128, 128, 128, 1);
+	  color: #ef8376;
+	  border-color: #ccc;
+	}
+	</style>
+
 </head>
 <body class="no-sidebar is-preload">
 	<div id="page-wrapper">
@@ -33,11 +67,22 @@
 	<div class="wrapper style1">
 		<div class="container">
 			<header class="major">
-				<a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ" target="_blank" class="button">Go to Google Scholar</a>
+				<p style="color: black;">Scientific Publications</p>
+				<p>
+					<a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ"
+					   target="_blank"
+					   class="button small scholar-button">
+					   View Full Profile on Google Scholar
+					</a>
+				</p>
 			</header>
-			<iframe src="https://bibbase.org/show?bib=https://raw.githubusercontent.com/GiuliaDAngelo/giuliadangelo.github.io/main/pub.bib&theme=simple" style="border: none; width: 100%; height: 600px;"></iframe>
 
-
+			<section style="margin-top: 2em;">
+				<iframe
+					src="https://bibbase.org/show?bib=https://raw.githubusercontent.com/GiuliaDAngelo/giuliadangelo.github.io/main/pub.bib&theme=simple&fullnames=1"
+					style="border: 1px solid #ccc; border-radius: 8px; width: 100%; height: 700px; padding: 10px; background: white;">
+				</iframe>
+			</section>
 		</div>
 	</div>
 
