@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Projects</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	<style>
+		.project-card {
+			background-color: #fff;
+			padding: 1em;
+			border-radius: 8px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			cursor: pointer;
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			position: relative;
+		}
+		.project-card:hover {
+			transform: scale(1.03);
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		}
+		.project-image {
+			width: 100%;
+			height: auto;
+			border-radius: 4px;
+			margin-bottom: 0.8em;
+		}
+		.project-description,
+		.project-details {
+			opacity: 0;
+			height: 0;
+			visibility: hidden;
+			transition: opacity 0.5s ease, height 0.5s ease;
+			overflow: hidden;
+		}
+		.project-card:hover .project-description,
+		.project-card:hover .project-details {
+			opacity: 1;
+			height: auto;
+			visibility: visible;
+			margin-top: 0.5em;
+		}
+		.project-details {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5em;
+		}
+		.project-details strong {
+			font-weight: 600;
+		}
+		.video-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2em;
+		}
+		@media screen and (max-width: 960px) {
+			.video-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+		@media screen and (max-width: 640px) {
+			.video-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body class="no-sidebar is-preload">
+<div id="page-wrapper">
+	<nav id="nav">
+		<ul>
+			<li><a href="index.html#header">Home</a></li>
+			<li><a href="index.html#features">Who I am</a></li>
+			<li><a href="research.html">Research</a>
+				<ul>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="openprojects.html">Open Projects</a></li>
+					<li><a href="endeavor.html">ENDEAVOR</a></li>
+					<li><a href="publications.html">Publications</a></li>
+				</ul>
+			</li>
+			<li><a href="grantsawards.html">Grants & Awards</a></li>
+			<li><a href="podcasts.html">Scientific Podcasts</a></li>
+			<li><a href="contactme.html">Contact me!</a></li>
+		</ul>
+	</nav>
+	<div class="wrapper style1">
+		<div class="container">
+			<div style="text-align: center; margin-top: 0em;">
+				<h3 style="margin-bottom: 1em;">YouTube channel</h3>
+				<a href="https://www.youtube.com/@gvmdangelo" target="_blank" class="icon brands fa-youtube youtube-icon" title="Visit my YouTube channel"></a>
+			</div>
+			<div class="video-grid">
+
+				<div class="project-card">
+					<h3>Object motion segmentation</h3>
+					<img src="images/project1.jpg" alt="Object motion segmentation" class="project-image" />
+					<p class="project-description"><strong>Wandering around: A bioinspired approach to visual attention through object motion sensitivity</strong>; Rising Stars 2025 Collection; Neuromorphic Computing and Engineering IOP</p>
+					<div class="project-details">
+						<p><strong>Supervision:</strong> Dr. Smith, Prof. Brown</p>
+						<p><strong>Context:</strong> Part of the EU-funded Biorobotics program</p>
+						<p><strong>Objectives:</strong> To model attention based on motion saliency</p>
+						<p><strong>Workplan:</strong> 1. Dataset analysis 2. Model development 3. Testing on iCub robot</p>
+					</div>
+				</div>
+				<div class="project-card">
+					<h3>Object motion segmentation</h3>
+					<img src="images/project1.jpg" alt="Object motion segmentation" class="project-image" />
+					<p class="project-description"><strong>Wandering around: A bioinspired approach to visual attention through object motion sensitivity</strong>; Rising Stars 2025 Collection; Neuromorphic Computing and Engineering IOP</p>
+					<div class="project-details">
+						<p><strong>Supervision:</strong> Dr. Smith, Prof. Brown</p>
+						<p><strong>Context:</strong> Part of the EU-funded Biorobotics program</p>
+						<p><strong>Objectives:</strong> To model attention based on motion saliency</p>
+						<p><strong>Workplan:</strong> 1. Dataset analysis 2. Model development 3. Testing on iCub robot</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<section class="contact">
+						<header>
+							<h3>Giulia D'Angelo</h3>
+							<h4>giulia.dangelo@fel.cvut.cz</h4>
+						</header>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/giuliadangelo/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">Linkedin</span></a></li>
+							<li><a href="https://github.com/GiuliaDAngelo" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.youtube.com/@gvmdangelo" class="icon brands fa-youtube" target="_blank"><span class="label">YouTube</span></a></li>
+							<li><a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ" class="icon solid fa-graduation-cap" target="_blank"><span class="label">Google Scholar</span></a></li>
+						</ul>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.dropotron.min.js"></script>
+<script src="../assets/js/jquery.scrolly.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
