@@ -30,18 +30,24 @@
 			border-radius: 4px;
 			margin-bottom: 0.8em;
 		}
+		.project-type {
+			font-size: 0.9em;
+			font-weight: bold;
+			color: #666;
+			margin-bottom: 0.5em;
+		}
 		.project-description,
 		.project-details {
 			opacity: 0;
-			height: 0;
+			max-height: 0;
 			visibility: hidden;
-			transition: opacity 0.5s ease, height 0.5s ease;
+			transition: max-height 0.5s ease, opacity 0.5s ease;
 			overflow: hidden;
 		}
 		.project-card:hover .project-description,
 		.project-card:hover .project-details {
 			opacity: 1;
-			height: auto;
+			max-height: 1000px;
 			visibility: visible;
 			margin-top: 0.5em;
 		}
@@ -91,25 +97,23 @@
 	</nav>
 	<div class="wrapper style1">
 		<div class="container">
-			<div style="text-align: center; margin-top: 0em;">
-				<h3 style="margin-bottom: 1em;">YouTube channel</h3>
-				<a href="https://www.youtube.com/@gvmdangelo" target="_blank" class="icon brands fa-youtube youtube-icon" title="Visit my YouTube channel"></a>
-			</div>
 			<div class="video-grid">
 
 				<div class="project-card">
 					<h3>Object motion segmentation</h3>
-					<img src="images/project1.jpg" alt="Object motion segmentation" class="project-image" />
-					<p class="project-description"><strong>Wandering around: A bioinspired approach to visual attention through object motion sensitivity</strong>; Rising Stars 2025 Collection; Neuromorphic Computing and Engineering IOP</p>
+					<div class="project-type">Bachelor/Master Project</div>
+					<img src="../images-projects/pinball.jpg" alt="Object motion segmentation" class="project-image" />
+					<p class="project-description"><strong>iCub playing pinball</strong></p>
 					<div class="project-details">
-						<p><strong>Supervision:</strong> Dr. Smith, Prof. Brown</p>
-						<p><strong>Context:</strong> Part of the EU-funded Biorobotics program</p>
-						<p><strong>Objectives:</strong> To model attention based on motion saliency</p>
-						<p><strong>Workplan:</strong> 1. Dataset analysis 2. Model development 3. Testing on iCub robot</p>
+						<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Mazdak Fathai (University of Lille)</p>
+						<p><strong>Context:</strong>Spiking Neural Network for flippers control</p>
+						<p><strong>Objectives:</strong>iCub will be playing pinball detecting the ball moevements and pressing the flippers with the hands to win</p>
+						<p><strong>Workplan:</strong> 1. Master (SNN implemenetation of the motion detector and deployment on iCub); Bachelor (iCub event-driven setup and inverse kinematics movements to press the flippers) 2. Model development on the robot 3. Testing on the robot</p>
 					</div>
 				</div>
 				<div class="project-card">
 					<h3>Object motion segmentation</h3>
+					<div class="project-type">Master Project</div>
 					<img src="images/project1.jpg" alt="Object motion segmentation" class="project-image" />
 					<p class="project-description"><strong>Wandering around: A bioinspired approach to visual attention through object motion sensitivity</strong>; Rising Stars 2025 Collection; Neuromorphic Computing and Engineering IOP</p>
 					<div class="project-details">
