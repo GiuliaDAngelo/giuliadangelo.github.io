@@ -7,28 +7,32 @@
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 	<style>
-		.project-card {
-			background-color: #fff;
-			padding: 1em;
-			border-radius: 8px;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-			transition: transform 0.3s ease, box-shadow 0.3s ease;
-			cursor: pointer;
-			height: auto;
+		.projects-wrapper {
 			display: flex;
 			flex-direction: column;
-			overflow: hidden;
-			position: relative;
+			gap: 2em;
 		}
-		.project-card:hover {
-			transform: scale(1.03);
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		.project-card {
+			display: flex;
+			flex-direction: row;
+			background-color: #fff;
+			border-radius: 8px;
+			padding: 1em;
+			gap: 1.5em;
+			align-items: flex-start;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		}
 		.project-image {
-			width: 100%;
+			flex: 0 0 250px;
+			width: 250px;
 			height: auto;
-			border-radius: 4px;
-			margin-bottom: 0.8em;
+			border-radius: 6px;
+			object-fit: cover;
+		}
+		.project-content {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
 		}
 		.project-type {
 			font-size: 0.9em;
@@ -36,43 +40,50 @@
 			color: #666;
 			margin-bottom: 0.5em;
 		}
-		.project-description,
 		.project-details {
-			opacity: 0;
-			max-height: 0;
-			visibility: hidden;
-			transition: max-height 0.5s ease, opacity 0.5s ease;
-			overflow: hidden;
-		}
-		.project-card:hover .project-description,
-		.project-card:hover .project-details {
-			opacity: 1;
-			max-height: 1000px;
-			visibility: visible;
-			margin-top: 0.5em;
-		}
-		.project-details {
-			display: flex;
+			display: none;
+			margin-top: 1em;
 			flex-direction: column;
 			gap: 0.5em;
 		}
 		.project-details strong {
 			font-weight: 600;
 		}
-		.video-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 2em;
+		.toggle-button {
+			margin-top: 1em;
+			padding: 0.4em 0.8em;
+			font-size: 0.9em;
+			cursor: pointer;
+			background: rgba(128, 128, 128, 1);
+			border: none;
+			border-radius: 4px;
+			width: fit-content;
+			align-self: flex-start;
+			transition: background-color 0.2s ease;
 		}
-		@media screen and (max-width: 960px) {
-			.video-grid {
-				grid-template-columns: repeat(2, 1fr);
+		.toggle-button:hover {
+			background: rgba(128, 128, 128, 1);
+			color: #ef8376;
+			border-color: #ccc;
+		}
+		@media screen and (max-width: 768px) {
+			.project-card {
+				flex-direction: column;
+			}
+			.project-image {
+				width: 100%;
+				flex: none;
 			}
 		}
-		@media screen and (max-width: 640px) {
-			.video-grid {
-				grid-template-columns: 1fr;
-			}
+		.section-intro {
+			padding: 1em;
+			background: #f9f9f9;
+			border-left: 4px solid #888;
+			border-radius: 8px;
+			margin-bottom: 2em;
+		}
+		.section-intro h2 {
+			margin-top: 0;
 		}
 	</style>
 </head>
@@ -95,55 +106,103 @@
 			<li><a href="contactme.html">Contact me!</a></li>
 		</ul>
 	</nav>
+
 	<div class="wrapper style1">
 		<div class="container">
-			<div class="video-grid">
+			<h3>List of open projects</h3>
+			<p>If you have a specific idea please feel free to contact me and we can brainstorm together!</p>
+			<div class="projects-wrapper">
 
+				<!-- PROJECT CARD 1 -->
 				<div class="project-card">
-					<h3 style="text-align: center;">Spiking motion detector: iCub playing pinball</h3>
-					<div class="project-type">Bachelor/Master Project</div>
 					<img src="../images-projects/pinball.png" alt="pinball" class="project-image" />
-					<p class="project-description"></p>
-					<div class="project-details">
-						<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Mazdak Fatahi (University of Lille)</p>
-						<p><strong>Context:</strong> Spiking Neural Network (SNN) for rapid flipper control</p>
-						<p><strong>Objectives:</strong> iCub will play pinball by detecting the ball's movements and pressing the flippers with its hands to win.</p>
-						<p><strong>Workplan:</strong> 1. Master (SNN implemenetation of the motion detector and deployment on iCub); Bachelor (iCub event-driven setup and inverse kinematics movements to press the flippers) 2. Model development on the robot 3. Testing on the robot</p>
-						<p><strong>References:</strong> SNN motion detector: D'Angelo, Giulia, et al. "Event-based eccentric motion detection exploiting time difference encoding." Frontiers in neuroscience 14 (2020): 451. </p>
+					<div class="project-content">
+						<h3>Spiking motion detector: iCub playing pinball</h3>
+						<div class="project-type">Bachelor/Master Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+							<p>This project explores the use of spiking neural networks (SNNs) for rapid motor control
+								in a dynamic task scenario. The iCub humanoid robot is programmed to play pinball by
+								detecting the ball’s motion and activating the flippers with its hands to optimize performance.
+								The project combines SNN-based motion detection with an event-driven sensory setup and inverse
+								kinematics for precise flipper control. Development includes implementing and deploying the neural model,
+								integrating the sensory-motor pipeline, and testing the system directly on the robot.</p>
+							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Mazdak Fatahi (University of Lille)</p>
+							<p><strong>Context:</strong> Spiking Neural Network (SNN) for rapid flipper control</p>
+							<p><strong>Objectives:</strong> iCub will play pinball by detecting the ball's movements and pressing the flippers with its hands to win.</p>
+							<p><strong>Workplan:</strong> 1. Master (SNN implementation of the motion detector and deployment on iCub); Bachelor (iCub event-driven setup and inverse kinematics movements to press the flippers) 2. Model development on the robot 3. Testing on the robot</p>
+							<p><strong>References:</strong> D'Angelo, Giulia, et al. "Event-based eccentric motion detection exploiting time difference encoding." *Frontiers in neuroscience* 14 (2020): 451.</p>
+						</div>
 					</div>
 				</div>
+
+				<!-- PROJECT CARD 2 -->
 				<div class="project-card">
-					<h3 style="text-align: center;">Spiking Neural Network for visual exploration: Object learning</h3>
-					<div class="project-type">Bachelor/Master Project</div>
-					<img src="../images-projects/exploration.png" alt="objlearning" class="project-image" />
-					<p class="project-description"></p>
-					<div class="project-details">
-						<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
-						<p><strong>Context:</strong> Spiking Neural Network (SNN) for alternative object discrimination.</p>
-						<p><strong>Objectives:</strong> iCub will hold an object in its hands and visually explore it while moving its wrist to learn the object through sensorimotor contingiencies.</p>
-						<p><strong>Workplan:</strong> 1. Master (SNN implementation leveraging contrastive learning through time (CLTT)); Bachelor (iCub event-driven setup with neck and wrist movement capabilities) 2. Model development on the robot 3. Testing on the robot</p>
-						<p><strong>References:</strong> CLTT: Aubret, Arthur, et al. "Learning object semantic similarity with self-supervision." 2024 IEEE International Conference on Development and Learning (ICDL). IEEE, 2024.
- 						</p>
+					<img src="../images-projects/exploration.png" alt="exploration" class="project-image" />
+					<div class="project-content">
+						<h3>Spiking Neural Network for visual exploration: Object learning</h3>
+						<div class="project-type">Bachelor/Master Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+							<p>This project investigates bioinspired object discrimination using spiking neural networks (SNNs) and sensorimotor learning.
+								It employs the iCub humanoid robot, which visually explores and manipulates objects to learn their features through
+								sensorimotor contingencies. The work integrates a spiking neural model with continual learning through time (CLTT)
+								and an event-driven sensory setup involving wrist and neck movements. Development includes designing the robot model
+								and evaluating its performance on object similarity tasks.</p>
+							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
+							<p><strong>Context:</strong> SNN for bioinspired object discrimination</p>
+							<p><strong>Objectives:</strong> iCub will hold an object and visually explore it to learn through sensorimotor contingencies.</p>
+							<p><strong>Workplan:</strong> 1. Master (SNN w/ CLTT); Bachelor (event-driven setup w/ wrist/neck) 2. Robot model development 3. Testing</p>
+							<p><strong>References:</strong> Aubret, Arthur, et al. "Learning object semantic similarity with self-supervision." *IEEE ICDL* (2024).</p>
+						</div>
 					</div>
 				</div>
-					<div class="project-card">
-					<h3 style="text-align: center;">Neuromorphic platform SpiNNaker setup</h3>
-					<div class="project-type">Bachelor/Semestral Project</div>
+
+				<!-- PROJECT CARD 3 -->
+				<div class="project-card">
 					<img src="../images-projects/spinnaker.png" alt="spinnaker" class="project-image" />
-					<p class="project-description"></p>
-					<div class="project-details">
-						<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
-						<p><strong>Context:</strong> Neuromorphic hardware setup.</p>
-						<p><strong>Objectives:</strong> SpiNNaker installation and setup.</p>
-						<p><strong>Workplan:</strong> 1. SpiNNaker installation 2. Hardware setup and testing examples neurons firing 3. Developing a small network and the installation kit.</p>
-						<p><strong>References:</strong> Furber, Steve B., et al. "The spinnaker project." Proceedings of the IEEE 102.5 (2014): 652-665.
- 						</p>
+					<div class="project-content">
+						<h3>Neuromorphic platform SpiNNaker setup</h3>
+						<div class="project-type">Bachelor/Semestral Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+							<p>This project focuses on the installation and configuration of the SpiNNaker neuromorphic computing platform, designed to support large-scale,
+								brain-inspired neural networks. The work involves setting up the hardware, running test neurons, and constructing an example spiking
+								neural network. The project is situated within a broader neuromorphic hardware context and draws on foundational work
+								from the SpiNNaker project.</p>
+							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
+							<p><strong>Context:</strong> Neuromorphic hardware setup</p>
+							<p><strong>Objectives:</strong> SpiNNaker installation and setup</p>
+							<p><strong>Workplan:</strong> 1. Install hardware 2. Run test neurons 3. Build example network</p>
+							<p><strong>References:</strong> Furber, Steve B., et al. "The spinnaker project." *Proceedings of the IEEE* 102.5 (2014): 652-665.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- PROJECT CARD 4 -->
+				<div class="project-card">
+					<img src="../images-projects/gestures.png" alt="gestures" class="project-image" />
+					<div class="project-content">
+						<h3>Event-based bioinspired gesture recognition</h3>
+						<div class="project-type">Master Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+							<p>This project explores how robots can learn to recognize and reproduce human gestures by integrating event-based vision with proprioceptive sensing. We use the iCub humanoid robot, equipped with an event-driven camera mounted on a custom 3D-printed head support. Gestures are acquired through human demonstration and reproduced by the robot in real time, enabling fast, adaptive interaction in dynamic environments.</p>
+							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Prof. Karla Stepanova (CIIRC)</p>
+							<p><strong>Context:</strong> Event-based gesture learning and reproduction with iCub</p>
+							<p><strong>Objectives:</strong> iCub learns gestures from human demonstrations using DVS and proprioception</p>
+							<p><strong>Workplan:</strong> 1. Collect demonstration data using vision and proprioception. 2. Use the IBM DVS gesture and collect new dataset for training. 3. Develop gesture recognition using event-based data. 4.  iCub reproduces the gestures demonstrated by a person standing in front of it.</p>
+							<p><strong>References:</strong> G. Sejnova and K. Stepanova, "Feedback-Driven Incremental Imitation Learning Using Sequential
+							VAE," 2022 IEEE International Conference on Development and Learning (ICDL), London, United Kingdom, 2022, pp. 238-243, doi: 10.1109/ICDL53763.2022.9962185.
+							</p>
+						</div>
 					</div>
 				</div>
 
 			</div>
 		</div>
 	</div>
+
 	<div id="footer">
 		<div class="container">
 			<div class="row">
@@ -165,6 +224,18 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	document.querySelectorAll('.toggle-button').forEach(button => {
+		button.addEventListener('click', () => {
+			const details = button.nextElementSibling;
+			const isVisible = details.style.display === 'block';
+			details.style.display = isVisible ? 'none' : 'block';
+			button.textContent = isVisible ? 'Show more' : 'Show less';
+		});
+	});
+</script>
+
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/jquery.dropotron.min.js"></script>
 <script src="../assets/js/jquery.scrolly.min.js"></script>
