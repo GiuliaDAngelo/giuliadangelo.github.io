@@ -9,18 +9,6 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	<style>
-		body {
-			font-family: 'Inter', sans-serif;
-			line-height: 1.6;
-			color: #333;
-		}
-
-		h2 {
-			font-size: 2em;
-			border-bottom: 2px solid #ddd;
-			padding-bottom: 0.3em;
-			margin-bottom: 1em;
-		}
 
 		.cv-section {
 			background: #fff;
@@ -51,99 +39,40 @@
 			list-style: disc;
 		}
 
-		.highlight {
-			color: #666;
-			font-weight: 600;
-		}
-
-		.skill-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-			gap: 1em;
-		}
 	</style>
 </head>
 <body class="no-sidebar is-preload">
 	<div id="page-wrapper">
-		<!-- Nav -->
-		<nav id="nav">
-			<ul>
-				<li><a href="../index.html#header">Home</a></li>
-				<li><a href="../index.html#features">Who I am</a></li>
-				<li><a href="research.html">Research</a>
-					<ul>
-						<li><a href="projects.html">Projects</a></li>
-						<li><a href="openprojects.html">Open Projects</a></li>
-						<li><a href="endeavor.html">ENDEAVOR</a></li>
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#header">Home</a></li>
+                <li><a href="#features">Who I am</a></li>
+                <li><a href="research.html">Research</a>
+                    <ul>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="openprojects.html">Open Projects</a></li>
+                        <li><a href="endeavor.html">ENDEAVOR</a></li>
 						<li><a href="publications.html">Publications</a></li>
-					</ul>
-				</li>
+                    </ul>
+                </li>
 				<li><a href="cv.html">CV</a></li>
-				<li><a href="grantsawards.html">Grants & Awards</a></li>
-				<li><a href="podcasts.html">Scientific Podcasts</a></li>
-				<li><a href="contactme.html">Contact me!</a></li>
-			</ul>
-		</nav>
+                <li><a href="grantsawards.html">Grants & Awards</a></li>
+                <li><a href="podcasts.html">Scientific Podcasts</a></li>
+                <li><a href="contactme">Contact me!</a></li>
+            </ul>
+        </nav>
 
 		<!-- Main -->
 		<div class="wrapper style1">
 			<div class="container">
 				<h2>Curriculum Vitae</h2>
-
 				<div class="cv-section">
-					<h3><i class="fas fa-user-tie"></i> Current Position</h3>
-					<p><span class="highlight">Marie Skłodowska-Curie Postdoctoral Fellow</span><br>
-					Department of Cybernetics, CTU Prague</p>
+					<h3><i class="fas fa-file-pdf"></i> Full PDF CV</h3>
+					<iframe src="../GiuliaDAngelo.pdf" width="100%" height="800px" style="border: none;">
+						Your browser does not support iframes.
+					</iframe>
 				</div>
-
-				<div class="cv-section">
-					<h3><i class="fas fa-graduation-cap"></i> Education</h3>
-					<ul>
-						<li>Ph.D. in Computer Science, University of Manchester (2019–2022)</li>
-						<li>M.Sc. in Neuroengineering, University of Genoa (2015–2017)</li>
-						<li>B.Sc. in Biomedical Engineering, University of Genoa (2011–2015)</li>
-					</ul>
-				</div>
-
-				<div class="cv-section">
-					<h3><i class="fas fa-briefcase"></i> Work Experience</h3>
-					<ul>
-						<li>Marie Skłodowska-Curie Fellow, CTU Prague (2024–Now)</li>
-						<li>Postdoc, IIT (2022–2024)</li>
-						<li>Visiting Researcher, CTU (2023)</li>
-						<li>Ph.D. Researcher, Manchester & IIT (2019–2022)</li>
-						<li>Software Engineer, IIT (2018–2019)</li>
-						<li>Research Fellow, King’s College London (2016–2017)</li>
-					</ul>
-				</div>
-
-				<div class="cv-section">
-					<h3><i class="fas fa-brain"></i> Research Interests</h3>
-					<p>Event-driven vision, spiking neural networks, neuromorphic computing, robotic perception, active vision, real-time embodied systems.</p>
-				</div>
-
-				<div class="cv-section">
-					<h3><i class="fas fa-trophy"></i> Selected Awards</h3>
-					<ul>
-						<li>Nature Communications Editors’ Highlights (2025)</li>
-						<li>Marie Skłodowska-Curie Actions Award (2024)</li>
-						<li>Best Oral Presentation – Women in Vision UK (2023)</li>
-						<li>President's Doctoral Scholar Award – UoM (2023)</li>
-					</ul>
-				</div>
-
-				<div class="cv-section">
-					<h3><i class="fas fa-cogs"></i> Skills</h3>
-					<div class="skill-grid">
-						<p><strong>Languages:</strong> Italian (native), English (proficient)</p>
-						<p><strong>Programming:</strong> Python, C++, Matlab, JavaScript, HTML</p>
-						<p><strong>Frameworks:</strong> PyTorch, snnTorch, sinabs, Tonic, Metavision</p>
-						<p><strong>Tools:</strong> Yarp, ROS, IBM Cloud, Neuromorphic platforms</p>
-					</div>
-				</div>
-				<!-- Other sections continue unchanged -->
-			</div>
-		</div>
 
 		<!-- Footer -->
 		<div id="footer">
