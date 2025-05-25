@@ -153,6 +153,7 @@
 					<option value="#5" title="data-title"></option>
 					<option value="#6" title="data-title"></option>
 					<option value="#7" title="data-title"></option>
+					<option value="#8" title="data-title"></option>
 				</select>
 			</div>
 
@@ -163,7 +164,7 @@
 					<img src="../images-projects/pinball.png" alt="pinball" class="project-image" />
 					<div class="project-content">
 						<h3 id="1" data-title="Spiking motion detector: iCub playing pinball">Spiking motion detector: iCub playing pinball</h3>
-						<div class="project-type">Bachelor/Master Project/Semestral Project</div>
+						<div class="project-type">Bachelor/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
 							<p>This project explores the use of spiking neural networks (SNNs) for rapid motor control
@@ -182,8 +183,8 @@
 							<p><strong>Objectives:</strong> iCub will play pinball by detecting the ball's movements and pressing the flippers with its hands to win.</p>
 							<p><strong>Workplan:</strong><br />
 								1. Master (SNN implementation of the motion detector and deployment on iCub); Bachelor (iCub event-driven setup and inverse kinematics movements to press the flippers)<br />
-								2. Model development on the robot<br />
-								3. Event-based data collection for the pinball<br />
+								2. Robots movements to control the flippers <br />
+								3. Event-based data collection (DVS mounted on iCub) for the pinball<br />
 								4. Testing on the robot<br /></p>
 							<p><strong>References:</strong><br />
 								D'Angelo, Giulia, et al. "Event-based eccentric motion detection exploiting time difference encoding." *Frontiers in neuroscience* 14 (2020): 451. <br />
@@ -216,8 +217,9 @@
 							<p><strong>Objectives:</strong> iCub will hold an object and visually explore it to learn through sensorimotor contingencies.</p>
 							<p><strong>Workplan:</strong><br />
 								1. Master (SNN implementation following SMCT with CLTT); Bachelor (event-driven setup wrist/neck iCub's movements)<br />
-								2. Robot model development and  deployment on the robot<br />
-								3. Testing on different class of objects.<br /></p>
+								2. iCub will hold an object and visually explore it (iCub's neck and wrist movements)<br />
+								3. Robot model development and  deployment on the robot together with the robot movements<br />
+								4. Testing on different class of objects.<br /></p>
 							<p><strong>References:</strong> <br />
 								Aubret, Arthur, et al. "Learning object semantic similarity with self-supervision." *IEEE ICDL* (2024). <br />
 								Kolner, Oleh, et al. "Mind the GAP: Glimpse-based Active Perception improves generalization and sample efficiency of visual reasoning." arXiv preprint arXiv:2409.20213 (2024).
@@ -240,8 +242,8 @@
 								example spiking neural network. The project is situated within a broader neuromorphic
 								hardware context and draws on foundational work from the SpiNNaker project. Importantly,
 								this project lays the groundwork for future development of more complex spiking neural
-								networks running in real time on the SpiNNaker platform. By establishing a robust and
-								functional system setup, it enables subsequent research into biologically inspired
+								networks running in real-time on the SpiNNaker platform with low-latency and low-power consumption.
+								By establishing a robust and functional system setup, it enables subsequent research into biologically inspired
 								computation and real-time neural processing on dedicated neuromorphic hardware.
 							</p>
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
@@ -268,7 +270,7 @@
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
 							<p>This project explores how robots can learn to recognize and reproduce human gestures by integrating
-								event-based vision with proprioceptive sensing.  Inspired by the efficiency and adaptability of
+								event-based vision with proprioceptive sensing. Inspired by the efficiency and adaptability of
 								the human visual system, the project leverages event based vision sensors, a novel class of
 								neuromorphic cameras that mimic the way biological eyes perceive motion and change.
 								Unlike traditional frame based cameras, event based sensors capture asynchronous changes
@@ -283,7 +285,7 @@
 								1. Collect demonstration data using vision and proprioception.<br />
 								2. Use the IBM DVS gesture and collect new dataset for training.<br />
 								3. Develop gesture recognition using event-based data.<br />
-								4.  iCub reproduces the gestures demonstrated by a person standing in front of it.<br /></p>
+								4. iCub reproduces the gestures demonstrated by a person standing in front of it.<br /></p>
 							<p><strong>References:</strong> <br />
 								G. Sejnova and K. Stepanova, "Feedback-Driven Incremental Imitation Learning Using Sequential VAE," 2022 IEEE International Conference on Development and Learning (ICDL), London, United Kingdom, 2022, pp. 238-243, doi: 10.1109/ICDL53763.2022.9962185.<br />
 								Giulia D., et al. "Wandering around: A bioinspired approach to visual attention through object motion sensitivity." arXiv preprint arXiv:2502.06747 (2025).
@@ -294,7 +296,7 @@
 
 				<!-- PROJECT CARD 5 -->
 				<div class="project-card">
-					<img src="../images-projects/language.png" alt="gestures" class="project-image" />
+					<img src="../images-projects/language.png" alt="language" class="project-image" />
 					<div class="project-content">
 						<h3 id="5" data-title="Bioinspired multimodal object recognition with language guidance for iCub">Bioinspired multimodal object recognition with language guidance for iCub</h3>
 						<div class="project-type">Master Project/Semestral Project</div>
@@ -310,9 +312,9 @@
 								eyes perceive motion and change. Unlike traditional frame based cameras, event based sensors
 								capture asynchronous changes in the visual scene, enabling low latency, high speed, and energy efficient
 								processing.
-								Objects are presented to the robot, which performs visual
-								and motor-based interactions to gather perceptual data. Language input bridges perception
-								and action, allowing the robot to associate object features with corresponding verbal descriptions.
+								Objects are presented to the robot, which performs visual and motor-based interactions
+								to gather perceptual data. Language input bridges perception and action, allowing the
+								robot to associate object features with corresponding verbal descriptions.
 								This approach enables interactive and embodied object learning in real-world scenarios.</p>
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Prof. Karla Stepanova (CIIRC)</p>
 							<p><strong>Context:</strong> Event-based object discrimination via language cues with iCub</p>
@@ -338,7 +340,7 @@
 
 				<!-- PROJECT CARD 6 -->
 				<div class="project-card">
-					<img src="../images-projects/facerecognition.png" alt="gestures" class="project-image" />
+					<img src="../images-projects/facerecognition.png" alt="facerecognition" class="project-image" />
 					<div class="project-content">
 						<h3 id="6" data-title="Event-based Bioinspired face recognition">Event-based Bioinspired face recognition</h3>
 						<div class="project-type">Master Project/Semestral Project</div>
@@ -346,7 +348,7 @@
 						<div class="project-details">
 						  <p>
 							  This project explores bioinspired approaches to face recognition using event-based vision
-							  sensors—neuromorphic cameras that mimic the way biological eyes detect motion and change.
+							  leveraging neuromorphic cameras that mimic the way biological eyes detect motion and change.
 							  Unlike traditional frame-based cameras, these sensors capture asynchronous brightness changes
 							  at each pixel, enabling low-latency, high-speed, and energy-efficient processing.
 							  Focusing on robust and efficient face recognition under challenging conditions, the project
@@ -379,7 +381,7 @@
 
 				<!-- PROJECT CARD 7 -->
 				<div class="project-card">
-					<img src="../images-projects/blink.png" alt="gestures" class="project-image" />
+					<img src="../images-projects/blink.png" alt="blink" class="project-image" />
 					<div class="project-content">
 						<h3 id="7" data-title="Event-based Bioinspired blink detection">Event-based bioinspired blink detection</h3>
 						<div class="project-type">Master Project/Semestral Project</div>
@@ -416,6 +418,46 @@
 						</div>
 					</div>
 				</div>
+
+
+				<div class="project-card">
+					<img src="../images-projects/eyemovements.png" alt="eyesmovements" class="project-image" />
+					<div class="project-content">
+						<h3 id="8" data-title="Spiking Neural Networks to mimic human-like eyes movements">Spiking Neural Networks to mimic human-like eyes movements</h3>
+						<div class="project-type">Master Project/Semestral Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+						  <p>
+							  This project continue the recently published work from Giulia D., et al. "Wandering around: A bioinspired
+							  approach to visual attention through object motion sensitivity".
+							  Inspired by the efficiency and adaptability of the human visual system, the project
+							  leverages event based vision sensors, a novel class of neuromorphic cameras that mimic
+							  the way biological eyes perceive motion and change.
+							  Unlike traditional frame based cameras, event based sensors capture asynchronous changes in the
+							  visual scene, enabling low latency, high speed, and energy efficient processing.
+							  The aim of the project is to understand and devlep a robust architecture to mimic fixational eyes
+							  movements and saccades, which are essential for visual attention and perception.
+							  By integrating insights from neuroscience, computer vision, and machine learning, this work contributes
+							  to the advancement of intelligent bioinspired robotics and the understanding of human visual processing.
+						  </p>
+						  <p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Prof. Ernst Niebur (JHU)</p>
+						  <p><strong>Context:</strong> Bioinspired human-like eyes movements with neuromorphic active vision</p>
+						  <p><strong>Objectives:</strong>Bioinspired fixational and saccades eyes movements with neuromorphci active vision</p>
+						  <p><strong>Workplan:</strong><br />
+							1. State of the art and literature review on fixational eyes movements models<br />
+							2. Implement of the microsaccades on the pan-tilt unit (finding the best random walk movements)<br />
+							3. Preprocess and collect a new event-based dataset for human-like eyes movements<br />
+							4. Evaluate performance in terms of object motion sensitivity and visual attention<br />
+							5. Deploy and test the system on the iCub robot (iCub's neck movements)<br /></p>
+							<p><strong>References:</strong><br />
+								Giulia D., et al. "Wandering around: A bioinspired approach to visual attention through object motion sensitivity." arXiv preprint arXiv:2502.06747 (2025).<br />
+								D’Angelo, Giulia, et al. "Event driven bio-inspired attentive system for the iCub humanoid robot on SpiNNaker." Neuromorphic Computing and Engineering 2.2 (2022): 024008.
+							</p>
+						</div>
+					</div>
+				</div>
+
+
 
 
 			</div>
