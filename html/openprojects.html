@@ -146,21 +146,23 @@
 				<h4>List of open projects</h4>
 				<select onchange="location = this.value;">
 					<option value="#">Select a project</option>
-					<option value="#pinball">Spiking motion detector: iCub playing pinball</option>
-					<option value="#exploration">Spiking Neural Network for visual exploration: Object learning</option>
-					<option value="#spinnaker">Neuromorphic platform SpiNNaker setup</option>
-					<option value="#gestures">Event-based bioinspired gesture recognition</option>
+					<option value="#1" title="data-title"></option>
+					<option value="#2" title="data-title"></option>
+					<option value="#3" title="data-title"></option>
+					<option value="#4" title="data-title"></option>
+					<option value="#5" title="data-title"></option>
+					<option value="#5" title="data-title"></option>
 				</select>
 			</div>
 
 			<div class="projects-wrapper">
 
-<!-- PROJECT CARD 1 -->
+			<!-- PROJECT CARD 1 -->
 				<div class="project-card">
 					<img src="../images-projects/pinball.png" alt="pinball" class="project-image" />
 					<div class="project-content">
-						<h3 id="pinball">Spiking motion detector: iCub playing pinball</h3>
-						<div class="project-type">Bachelor/Master Project</div>
+						<h3 id="1" data-title="Spiking motion detector: iCub playing pinball">Spiking motion detector: iCub playing pinball</h3>
+						<div class="project-type">Bachelor/Master Project/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
 							<p>This project explores the use of spiking neural networks (SNNs) for rapid motor control
@@ -172,8 +174,15 @@
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Mazdak Fatahi (University of Lille)</p>
 							<p><strong>Context:</strong> Spiking Neural Network (SNN) for rapid flipper control</p>
 							<p><strong>Objectives:</strong> iCub will play pinball by detecting the ball's movements and pressing the flippers with its hands to win.</p>
-							<p><strong>Workplan:</strong> 1. Master (SNN implementation of the motion detector and deployment on iCub); Bachelor (iCub event-driven setup and inverse kinematics movements to press the flippers) 2. Model development on the robot 3. Testing on the robot</p>
-							<p><strong>References:</strong> D'Angelo, Giulia, et al. "Event-based eccentric motion detection exploiting time difference encoding." *Frontiers in neuroscience* 14 (2020): 451.</p>
+							<p><strong>Workplan:</strong><br />
+								1. Master (SNN implementation of the motion detector and deployment on iCub); Bachelor (iCub event-driven setup and inverse kinematics movements to press the flippers)<br />
+								2. Model development on the robot<br />
+								3. Event-based data collection for the pinball<br />
+								4. Testing on the robot<br /></p>
+							<p><strong>References:</strong><br />
+								D'Angelo, Giulia, et al. "Event-based eccentric motion detection exploiting time difference encoding." *Frontiers in neuroscience* 14 (2020): 451. <br />
+								Fatahi, Mazdak, Pierre Boulet, and Giulia D’angelo. "Event-driven nearshore and shoreline coastline detection on SpiNNaker neuromorphic hardware." Neuromorphic Computing and Engineering 4.3 (2024): 034012.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -182,20 +191,26 @@
 				<div class="project-card">
 					<img src="../images-projects/exploration.png" alt="exploration" class="project-image" />
 					<div class="project-content">
-						<h3 id="exploration">Spiking Neural Network for visual exploration: Object learning</h3>
-						<div class="project-type">Bachelor/Master Project</div>
+						<h3 id="2" data-title="Spiking neural network for visual exploration with iCub: Object learning">Spiking neural network for visual exploration with iCub: Object learning</h3>
+						<div class="project-type">Bachelor/Master Project/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
 							<p>This project investigates bioinspired object discrimination using spiking neural networks (SNNs) and sensorimotor learning.
 								It employs the iCub humanoid robot, which visually explores and manipulates objects to learn their features through
-								sensorimotor contingencies. The work integrates a spiking neural model with continual learning through time (CLTT)
+								sensorimotor contingencies theories (SMCT). The work integrates a spiking neural model with continual learning through time (CLTT)
 								and an event-driven sensory setup involving wrist and neck movements. Development includes designing the robot model
 								and evaluating its performance on object similarity tasks.</p>
-							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
+							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), (PhD Šárka Lísková)</p>
 							<p><strong>Context:</strong> SNN for bioinspired object discrimination</p>
 							<p><strong>Objectives:</strong> iCub will hold an object and visually explore it to learn through sensorimotor contingencies.</p>
-							<p><strong>Workplan:</strong> 1. Master (SNN w/ CLTT); Bachelor (event-driven setup w/ wrist/neck) 2. Robot model development 3. Testing</p>
-							<p><strong>References:</strong> Aubret, Arthur, et al. "Learning object semantic similarity with self-supervision." *IEEE ICDL* (2024).</p>
+							<p><strong>Workplan:</strong><br />
+								1. Master (SNN implementation following SMCT with CLTT); Bachelor (event-driven setup wrist/neck iCub's movements)<br />
+								2. Robot model development and  deployment on the robot<br />
+								3. Testing on different class of objects.<br /></p>
+							<p><strong>References:</strong> <br />
+								Aubret, Arthur, et al. "Learning object semantic similarity with self-supervision." *IEEE ICDL* (2024). <br />
+								Kolner, Oleh, et al. "Mind the GAP: Glimpse-based Active Perception improves generalization and sample efficiency of visual reasoning." arXiv preprint arXiv:2409.20213 (2024).
+							</p>
 						</div>
 					</div>
 				</div>
@@ -204,7 +219,7 @@
 				<div class="project-card">
 					<img src="../images-projects/spinnaker.png" alt="spinnaker" class="project-image" />
 					<div class="project-content">
-						<h3 id="spinnaker">Neuromorphic platform SpiNNaker setup</h3>
+						<h3 id="3" data-title="Neuromorphic platform SpiNNaker setup">Neuromorphic platform SpiNNaker setup</h3>
 						<div class="project-type">Bachelor/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
@@ -215,8 +230,14 @@
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
 							<p><strong>Context:</strong> Neuromorphic hardware setup</p>
 							<p><strong>Objectives:</strong> SpiNNaker installation and setup</p>
-							<p><strong>Workplan:</strong> 1. Install hardware 2. Run test neurons 3. Build example network</p>
-							<p><strong>References:</strong> Furber, Steve B., et al. "The spinnaker project." *Proceedings of the IEEE* 102.5 (2014): 652-665.</p>
+							<p><strong>Workplan:</strong><br />
+								1. Install libraries for the neuromorphic hardware<br />
+								2. Run test neurons<br />
+								3. Build example network<br /></p>
+							<p><strong>References:</strong>  <br />
+								Furber, Steve B., et al. "The spinnaker project." *Proceedings of the IEEE* 102.5 (2014): 652-665.<br />
+								https://github.com/spinnakermanchester
+							</p>
 						</div>
 					</div>
 				</div>
@@ -225,21 +246,136 @@
 				<div class="project-card">
 					<img src="../images-projects/gestures.png" alt="gestures" class="project-image" />
 					<div class="project-content">
-						<h3 id="gestures">Event-based bioinspired gesture recognition</h3>
-						<div class="project-type">Master Project</div>
+						<h3 id="4" data-title="Event-based bioinspired gesture recognition on iCub">Event-based bioinspired gesture recognition on iCub</h3>
+						<div class="project-type">Master Project/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
-							<p>This project explores how robots can learn to recognize and reproduce human gestures by integrating event-based vision with proprioceptive sensing. We use the iCub humanoid robot, equipped with an event-driven camera mounted on a custom 3D-printed head support. Gestures are acquired through human demonstration and reproduced by the robot in real time, enabling fast, adaptive interaction in dynamic environments.</p>
+							<p>This project explores how robots can learn to recognize and reproduce human gestures by integrating event-based vision
+								with proprioceptive sensing. We use the iCub humanoid robot, equipped with an event-driven camera mounted on a custom
+								3D-printed head support. Gestures are acquired through human demonstration and reproduced by the robot in real time,
+								enabling fast, adaptive interaction in dynamic environments.</p>
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Prof. Karla Stepanova (CIIRC)</p>
 							<p><strong>Context:</strong> Event-based gesture learning and reproduction with iCub</p>
-							<p><strong>Objectives:</strong> iCub learns gestures from human demonstrations using DVS and proprioception</p>
-							<p><strong>Workplan:</strong> 1. Collect demonstration data using vision and proprioception. 2. Use the IBM DVS gesture and collect new dataset for training. 3. Develop gesture recognition using event-based data. 4.  iCub reproduces the gestures demonstrated by a person standing in front of it.</p>
-							<p><strong>References:</strong> G. Sejnova and K. Stepanova, "Feedback-Driven Incremental Imitation Learning Using Sequential
-							VAE," 2022 IEEE International Conference on Development and Learning (ICDL), London, United Kingdom, 2022, pp. 238-243, doi: 10.1109/ICDL53763.2022.9962185.
+							<p><strong>Objectives:</strong> iCub learns gestures from human demonstrations using event-based DVS data and proprioception</p>
+							<p><strong>Workplan:</strong><br />
+								1. Collect demonstration data using vision and proprioception.<br />
+								2. Use the IBM DVS gesture and collect new dataset for training.<br />
+								3. Develop gesture recognition using event-based data.<br />
+								4.  iCub reproduces the gestures demonstrated by a person standing in front of it.<br /></p>
+							<p><strong>References:</strong> <br />
+								G. Sejnova and K. Stepanova, "Feedback-Driven Incremental Imitation Learning Using Sequential VAE," 2022 IEEE International Conference on Development and Learning (ICDL), London, United Kingdom, 2022, pp. 238-243, doi: 10.1109/ICDL53763.2022.9962185.<br />
+								Giulia D., et al. "Wandering around: A bioinspired approach to visual attention through object motion sensitivity." arXiv preprint arXiv:2502.06747 (2025).
 							</p>
 						</div>
 					</div>
 				</div>
+
+				<!-- PROJECT CARD 5 -->
+				<div class="project-card">
+					<img src="../images-projects/language.png" alt="gestures" class="project-image" />
+					<div class="project-content">
+						<h3 id="5" data-title="Bioinspired multimodal object recognition with language guidance for iCub">Bioinspired multimodal object recognition with language guidance for iCub</h3>
+						<div class="project-type">Master Project/Semestral Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+							<p>This project investigates how robots can learn to recognize objects through active, multimodal
+								exploration guided by natural language. We use the iCub humanoid robot equipped with an event-driven
+								camera mounted on a custom 3D-printed head support, which explores
+								objects by combining visual exploration with wrist movements while receiving teaching signals
+								through verbal instructions. Objects are presented to the robot, which performs visual
+								and motor-based interactions to gather perceptual data. Language input bridges perception
+								and action, allowing the robot to associate object features with corresponding verbal descriptions.
+								This approach enables interactive and embodied object learning in real-world scenarios.</p>
+							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Prof. Karla Stepanova (CIIRC)</p>
+							<p><strong>Context:</strong> Event-based object discrimination via language cues with iCub</p>
+							<p><strong>Objectives:</strong> iCub learns objects from human verbal insight and active exploration using event-based DVS data and proprioception</p>
+							<p><strong>Workplan:</strong><br />
+								1. Setup for iCub to hold and visually explore objects using wrist articulation.<br />
+								2. Integrate visual and proprioceptive signals during exploration.<br />
+								3. Provide teaching signals using language (e.g., "This is a cup").<br />
+								4.  iCub reproduces the gestures demonstrated by a person standing in front of it.<br />
+								5.Develop a multimodal representation linking language, vision, and action.<br />
+								6. Train object recognition models using the collected data.<br />
+								7. Test generalization through iCub performing visual search when asked verbally (e.g., “Find the cup”).<br />
+							</p>
+							<p><strong>References:</strong> <br />
+								Štěpánová K., Frederico B. Klein, Angelo Cangelosi, Vavrečka M. “Mapping
+								language to vision in a real-world robotic scenario.” IEEE Transactions on
+								Cognitive and Developmental Systems (2018)<br />
+								Giulia D., et al. "Wandering around: A bioinspired approach to visual attention through object motion sensitivity." arXiv preprint arXiv:2502.06747 (2025).
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- PROJECT CARD 6 -->
+				<div class="project-card">
+					<img src="../images-projects/facerecognition.png" alt="gestures" class="project-image" />
+					<div class="project-content">
+						<h3 id="6">Event-based Bioinspired Face Recognition</h3>
+						<div class="project-type">Master Project/Semestral Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+						  <p>
+							This project explores bioinspired approaches to face recognition using event-based vision sensors.
+						  </p>
+						  <p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Dr. Ana Filipa Sequeira (INESC TEC)</p>
+						  <p><strong>Context:</strong> Neuromorphic vision for efficient and robust face recognition under challenging conditions</p>
+						  <p><strong>Objectives:</strong>Sparse, robust and fast bioinspired event-based face recognition</p>
+						  <p><strong>Workplan:</strong><br />
+							1. State of the art and literature review on event-based face recognition and bioinspired models<br />
+							2. Implement a face recognition pipeline optimized for event-driven input<br />
+							3. Preprocess and collect a new event-based face dataset<br />
+							4. Evaluate performance against conventional vision approaches in challenging conditions<br />
+							5. Deploy and test the system on the iCub robot<br /></p>
+							<p><strong>References:</strong><br />
+								Lenz, Gregor, Sio-Hoi Ieng, and Ryad Benosman. "Event-based face detection and tracking using the dynamics of eye blinks." Frontiers in Neuroscience 14 (2020): 587.<br />
+								Moreira, Gonçalo, et al. "Neuromorphic event-based face identity recognition." 2022 26th International Conference on Pattern Recognition (ICPR). IEEE, 2022.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- PROJECT CARD 7 -->
+				<div class="project-card">
+					<img src="../images-projects/blink.png" alt="gestures" class="project-image" />
+					<div class="project-content">
+						<h3 id="7">Event-based bioinspired blink detection</h3>
+						<div class="project-type">Master Project/Semestral Project</div>
+						<button class="toggle-button">Show more</button>
+						<div class="project-details">
+						  <p>
+							  This project investigates bioinspired approaches to blink detection as a means of enhancing driver
+							  monitoring systems and improving road safety. Inspired by the efficiency and adaptability of
+							  the human visual system, the project leverages event based vision sensors, a novel class
+							  of neuromorphic cameras that mimic the way biological eyes perceive motion and change.
+							  Unlike traditional frame based cameras, event based sensors capture asynchronous changes in the
+							  visual scene, enabling low latency, high speed, and energy efficient detection of rapid
+							  eye movements such as blinks. These characteristics make them particularly well suited
+							  for real time driver monitoring in dynamic and resource constrained environments such as
+							  automotive settings.
+							  The aim of the project is to develop a robust blink detection pipeline that can operate
+							  reliably under varying lighting conditions, head poses, and occlusions, with a specific
+							  focus on detecting signs of drowsiness or inattention. By integrating insights from neuroscience,
+							  computer vision, and machine learning, this work contributes to the advancement of intelligent
+							  driver assistance systems and the broader field of human centered vehicle safety technologies.						  </p>
+						  <p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Dr. Ana Filipa Sequeira (INESC TEC)</p>
+						  <p><strong>Context:</strong> Neuromorphic vision for efficient and robust blink detection under challenging conditions</p>
+						  <p><strong>Objectives:</strong>Sparse, robust and fast bioinspired event-based blink detection</p>
+						  <p><strong>Workplan:</strong><br />
+							1. State of the art and literature review on event-based blink detection and bioinspired models<br />
+							2. Implement the blink detector optimized for event-driven input<br />
+							3. Preprocess and collect a new event-based blink detection dataset<br />
+							4. Evaluate performance against conventional vision approaches in challenging conditions<br />
+							5. Deploy and test the system on the iCub robot<br /></p>
+							<p><strong>References:</strong><br />
+								Lenz, Gregor, Sio-Hoi Ieng, and Ryad Benosman. "Event-based face detection and tracking using the dynamics of eye blinks." Frontiers in Neuroscience 14 (2020): 587.<br />
+								Ryan, Cian, et al. "Real-time face & eye tracking and blink detection using event cameras." Neural Networks 141 (2021): 87-97.
+							</p>
+						</div>
+					</div>
+				</div>
+
 
 			</div>
 		</div>
@@ -291,6 +427,18 @@
 			const card = targetElement.closest('.project-card');
 			card.classList.add('highlight');
 			setTimeout(() => card.classList.remove('highlight'), 1000);
+		}
+	});
+
+	document.querySelectorAll('.section-intro select option').forEach(option => {
+		const targetId = option.value.replace('#', '');
+		const targetElement = document.getElementById(targetId);
+		if (targetElement) {
+			const title = targetElement.getAttribute('data-title');
+			if (title) {
+				option.textContent = title; // Set the option text to the data-title
+				option.setAttribute('title', title); // Set the title attribute for tooltip
+			}
 		}
 	});
 </script>
