@@ -151,7 +151,8 @@
 					<option value="#3" title="data-title"></option>
 					<option value="#4" title="data-title"></option>
 					<option value="#5" title="data-title"></option>
-					<option value="#5" title="data-title"></option>
+					<option value="#6" title="data-title"></option>
+					<option value="#7" title="data-title"></option>
 				</select>
 			</div>
 
@@ -166,11 +167,16 @@
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
 							<p>This project explores the use of spiking neural networks (SNNs) for rapid motor control
-								in a dynamic task scenario. The iCub humanoid robot is programmed to play pinball by
-								detecting the ball’s motion and activating the flippers with its hands to optimize performance.
+								in a dynamic task scenario leveraging event-based cameras.  Inspired by the efficiency and
+								adaptability of the human visual system, the project leverages event based vision sensors,
+								a novel class of neuromorphic cameras that mimic the way biological eyes perceive motion and
+								change. Unlike traditional frame based cameras, event based sensors capture asynchronous
+								changes in the visual scene, enabling low latency, high speed, and energy efficient processing.
+								The iCub humanoid robot is programmed to play pinball by detecting the ball’s motion and
+								activating the flippers with its hands to optimize performance.
 								The project combines SNN-based motion detection with an event-driven sensory setup and inverse
-								kinematics for precise flipper control. Development includes implementing and deploying the neural model,
-								integrating the sensory-motor pipeline, and testing the system directly on the robot.</p>
+								kinematics for precise flipper control. Development includes implementing and deploying the neural
+								model, integrating the sensory-motor pipeline, and testing the system directly on the robot.</p>
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Mazdak Fatahi (University of Lille)</p>
 							<p><strong>Context:</strong> Spiking Neural Network (SNN) for rapid flipper control</p>
 							<p><strong>Objectives:</strong> iCub will play pinball by detecting the ball's movements and pressing the flippers with its hands to win.</p>
@@ -195,7 +201,12 @@
 						<div class="project-type">Bachelor/Master Project/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
-							<p>This project investigates bioinspired object discrimination using spiking neural networks (SNNs) and sensorimotor learning.
+							<p>This project investigates bioinspired object discrimination using spiking neural networks (SNNs) and sensorimotor learning
+								leveraging event-based visual information.  Inspired by the efficiency and adaptability of the human visual system,
+								the project leverages event based vision sensors, a novel class of neuromorphic cameras that mimic the way biological
+							  	eyes perceive motion and change. Unlike traditional frame based cameras, event based sensors
+							  	capture asynchronous changes in the visual scene, enabling low latency, high speed, and energy efficient
+							  	processing.
 								It employs the iCub humanoid robot, which visually explores and manipulates objects to learn their features through
 								sensorimotor contingencies theories (SMCT). The work integrates a spiking neural model with continual learning through time (CLTT)
 								and an event-driven sensory setup involving wrist and neck movements. Development includes designing the robot model
@@ -223,10 +234,16 @@
 						<div class="project-type">Bachelor/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
-							<p>This project focuses on the installation and configuration of the SpiNNaker neuromorphic computing platform, designed to support large-scale,
-								brain-inspired neural networks. The work involves setting up the hardware, running test neurons, and constructing an example spiking
-								neural network. The project is situated within a broader neuromorphic hardware context and draws on foundational work
-								from the SpiNNaker project.</p>
+							<p>This project focuses on the installation and configuration of the SpiNNaker neuromorphic
+								computing platform, designed to support large-scale, brain-inspired neural networks.
+								The work involves setting up the hardware, running test neurons, and constructing an
+								example spiking neural network. The project is situated within a broader neuromorphic
+								hardware context and draws on foundational work from the SpiNNaker project. Importantly,
+								this project lays the groundwork for future development of more complex spiking neural
+								networks running in real time on the SpiNNaker platform. By establishing a robust and
+								functional system setup, it enables subsequent research into biologically inspired
+								computation and real-time neural processing on dedicated neuromorphic hardware.
+							</p>
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU)</p>
 							<p><strong>Context:</strong> Neuromorphic hardware setup</p>
 							<p><strong>Objectives:</strong> SpiNNaker installation and setup</p>
@@ -250,10 +267,15 @@
 						<div class="project-type">Master Project/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
-							<p>This project explores how robots can learn to recognize and reproduce human gestures by integrating event-based vision
-								with proprioceptive sensing. We use the iCub humanoid robot, equipped with an event-driven camera mounted on a custom
-								3D-printed head support. Gestures are acquired through human demonstration and reproduced by the robot in real time,
-								enabling fast, adaptive interaction in dynamic environments.</p>
+							<p>This project explores how robots can learn to recognize and reproduce human gestures by integrating
+								event-based vision with proprioceptive sensing.  Inspired by the efficiency and adaptability of
+								the human visual system, the project leverages event based vision sensors, a novel class of
+								neuromorphic cameras that mimic the way biological eyes perceive motion and change.
+								Unlike traditional frame based cameras, event based sensors capture asynchronous changes
+								in the visual scene, enabling low latency, high speed, and energy efficient processing.
+								We use the iCub humanoid robot, equipped with an event-driven camera mounted on a custom
+								3D-printed head support. Gestures are acquired through human demonstration and reproduced by
+								the robot in real time, enabling fast, adaptive interaction in dynamic environments.</p>
 							<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Prof. Karla Stepanova (CIIRC)</p>
 							<p><strong>Context:</strong> Event-based gesture learning and reproduction with iCub</p>
 							<p><strong>Objectives:</strong> iCub learns gestures from human demonstrations using event-based DVS data and proprioception</p>
@@ -282,7 +304,13 @@
 								exploration guided by natural language. We use the iCub humanoid robot equipped with an event-driven
 								camera mounted on a custom 3D-printed head support, which explores
 								objects by combining visual exploration with wrist movements while receiving teaching signals
-								through verbal instructions. Objects are presented to the robot, which performs visual
+								through verbal instructions.
+								Inspired by the efficiency and adaptability of the human visual system, the project leverages
+								event based vision sensors, a novel class of neuromorphic cameras that mimic the way biological
+								eyes perceive motion and change. Unlike traditional frame based cameras, event based sensors
+								capture asynchronous changes in the visual scene, enabling low latency, high speed, and energy efficient
+								processing.
+								Objects are presented to the robot, which performs visual
 								and motor-based interactions to gather perceptual data. Language input bridges perception
 								and action, allowing the robot to associate object features with corresponding verbal descriptions.
 								This approach enables interactive and embodied object learning in real-world scenarios.</p>
@@ -312,12 +340,25 @@
 				<div class="project-card">
 					<img src="../images-projects/facerecognition.png" alt="gestures" class="project-image" />
 					<div class="project-content">
-						<h3 id="6" data-title="Event-based Bioinspired Face Recognition">Event-based Bioinspired Face Recognition</h3>
+						<h3 id="6" data-title="Event-based Bioinspired face recognition">Event-based Bioinspired face recognition</h3>
 						<div class="project-type">Master Project/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
 						  <p>
-							This project explores bioinspired approaches to face recognition using event-based vision sensors.
+							  This project explores bioinspired approaches to face recognition using event-based vision
+							  sensors—neuromorphic cameras that mimic the way biological eyes detect motion and change.
+							  Unlike traditional frame-based cameras, these sensors capture asynchronous brightness changes
+							  at each pixel, enabling low-latency, high-speed, and energy-efficient processing.
+							  Focusing on robust and efficient face recognition under challenging conditions, the project
+							  aims to develop a fast, sparse, and resilient recognition system tailored to event-driven input.
+							  After reviewing current research on event-based and biologically inspired vision models,
+							  a specialized recognition pipeline will be implemented and tested using a newly collected
+							  dataset of dynamic facial events. The system’s performance will be benchmarked against
+							  conventional approaches in conditions such as low light and motion, highlighting its
+							  robustness and efficiency. Finally, the solution will be deployed on a humanoid robot to
+							  validate its real-time applicability in interactive settings. This work contributes to
+							  advancing neuromorphic vision by aligning artificial perception more closely with the efficiency
+							  of natural systems.
 						  </p>
 						  <p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Dr. Ana Filipa Sequeira (INESC TEC)</p>
 						  <p><strong>Context:</strong> Neuromorphic vision for efficient and robust face recognition under challenging conditions</p>
@@ -340,7 +381,7 @@
 				<div class="project-card">
 					<img src="../images-projects/blink.png" alt="gestures" class="project-image" />
 					<div class="project-content">
-						<h3 id="7" data-title="Event-based bioinspired blink detection">Event-based bioinspired blink detection</h3>
+						<h3 id="7" data-title="Event-based Bioinspired blink detection">Event-based bioinspired blink detection</h3>
 						<div class="project-type">Master Project/Semestral Project</div>
 						<button class="toggle-button">Show more</button>
 						<div class="project-details">
