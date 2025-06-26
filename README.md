@@ -131,6 +131,7 @@ The `generate_context.py` script in this repository is designed for exactly this
 
 The AI will now have all the information it needs to give you precise, accurate instructions and code.
 
+
 ## Key Project Directories
 
 -   `data/`: Contains `.yml` files that hold most of the site's content (About, Resume, Awards, etc.). **This is where you'll make most content edits.**
