@@ -1,0 +1,11 @@
+{
+  "name": "portio-hugo-site",
+  "version": "1.0.0",
+  "description": "Giulia D'Angelo's Personal Website",
+  "scripts": {
+    "dev": "hugo server --disableFastRender",
+    "build": "hugo --gc --minify"
+  },
+  "author": "Giulia D'Angelo",
+  "license": "MIT"
+}

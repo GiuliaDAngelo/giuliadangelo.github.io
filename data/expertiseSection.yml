@@ -1,0 +1,27 @@
+enable: true
+topTitle: Core Competencies
+title: >
+  ## Technical Expertise
+
+  Leveraging cutting-edge technology to build the next generation of intelligent robotic systems.
+service:
+  - content: >
+      #### Neuromorphic Engineering
+
+      Designing spiking neural networks for low-power, event-driven processing on hardware like SpiNNaker and Loihi.
+    image: images/service/creative.svg
+  - content: >
+      #### Robotics & Active Vision
+
+      Developing bio-inspired attention, control, and perception algorithms for humanoid robots, enabling real-time interaction.
+    image: images/service/web.svg
+  - content: >
+      #### Software & Programming
+
+      Proficient in Python, C++, and MATLAB, with extensive experience in robotics frameworks (ROS, YARP) and neuromorphic tools.
+    image: images/service/ui-ux.svg
+  - content: >
+      #### AI for Vision
+
+      Applying deep learning and SNNs for vision tasks using libraries like PyTorch, snnTorch, and Tonic for event-based data.
+    image: images/service/branding.svg

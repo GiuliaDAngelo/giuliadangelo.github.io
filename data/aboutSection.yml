@@ -1,0 +1,20 @@
+enable: true
+topTitle: About Me
+title: >
+  ## Hi. I'm **Giulia**, nice to meet you.
+content: >
+  #### "The brain is imagination, and that was exciting to me; I wanted to build a chip that could imagine something." — *Misha Mahowald*
+
+
+  I hold a Bachelor's in Biomedical Engineering and a Master's in **Neuroengineering** (with honors) from the **University of Genoa**, with a thesis on neuromorphic vision at **King's College London**.
+
+
+  After a year as a software engineer at the **Italian Institute of Technology**, I earned my PhD from **The University of Manchester**, receiving the **President's Doctoral Scholar Award**. My research focused on bio-inspired visual attention for the iCub humanoid robot using neuromorphic hardware.
+
+
+  Currently, I am a **Marie Skłodowska-Curie Postdoctoral Fellow** at the **Czech Technical University in Prague**, leading the ENDEAVOR project on event-driven active vision.
+button1Name: My Research
+button2Name: Download CV
+button1Target: "#portfolio"
+button2Target: "cv.pdf"
+image: images/about/about-img.jpg
