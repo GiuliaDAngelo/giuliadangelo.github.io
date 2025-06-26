@@ -2,7 +2,7 @@ name: Deploy Hugo Site to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "hugo-template"]
 
 # Job permissions
 permissions:
