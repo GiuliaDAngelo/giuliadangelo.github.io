@@ -1,0 +1,106 @@
+<section class="footer" id="contact">
+	<div class="footer__background_shape">
+		<svg viewBox="0 0 1920 79">
+			<path d="M0 0h1920v79L0 0z" data-name="Path 1450" />
+		</svg>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="footer__cta">
+					<div class="row align-items-center">
+						<!-- Contact Info and Socials -->
+						<div class="col-lg-5 mb-5 mb-lg-0 text-light text-center text-lg-left">
+							<span>Contact me</span>
+							<h2 class="mb-4">Let’s Connect!</h2>
+							<p>Got a question, an idea, or just want to say hello? Drop a message, and I'll get back to you.</p>
+
+							<div class="text-light footer__widget_address mt-4">
+								<ul class="fa-ul small ml-0">
+									<li class="mb-2"><a class="text-light" href="mailto:{{ .Site.Params.address.email }}"><span class="fa-li"><i class="fa fa-envelope"></i></span>{{ .Site.Params.address.email }}</a></li>
+								</ul>
+							</div>
+							<div class="footer__footer_social mt-4">
+								<ul class="unstyle-list">
+									{{ range .Site.Params.social }}
+									<li class="d-inline-block mx-2"><a class="text-light h4" target="_blank" href="{{ .url }}"><i class="fa {{ .icon }}"></i></a></li>
+									{{ end }}
+								</ul>
+							</div>
+						</div>
+						<!-- Contact Form -->
+						<div class="col-lg-6 offset-lg-1">
+							<div class="contact-form-input">
+								<form id="contact-form" action="{{ .Site.Params.fabformURL }}" method="POST">
+									<div class="form-row">
+										<div class="form-group col-md-6 pr-lg-2">
+											<input type="text" class="form-control" name="Name" placeholder="Name" required />
+										</div>
+										<div class="form-group col-md-6 pl-lg-2">
+											<input type="email" class="form-control" name="email" placeholder="Email" required />
+										</div>
+									</div>
+									<div class="form-group">
+										<textarea class="form-control" rows="5" name="message" placeholder="Message" required></textarea>
+									</div>
+									<button type="submit" class="btn btn-light btn-zoom" id="contact-form-button">Send Message</button>
+									<p id="contact-form-status" class="mt-3"></p>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row footer__footer mt-5">
+			<div class="col-12 text-center">
+				<div class="footer__footer_copy text-light">
+					<p>Copyright {{ dateFormat "2006" now }} - All Rights Reserved by <a class="text-light" href="https://staticmania.com/" target="_blank">StaticMania</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Scripts -->
+<script src="https://maps.googleapis.com/maps/api/js?key={{ .Site.Params.map.APIkey }}&libraries=geometry"></script>
+<script src="{{ "plugins/jQuery/jquery.min.js" | absURL }}"></script>
+<script src="{{ "plugins/bootstrap/bootstrap.min.js" | absURL }}"></script>
+<script src="{{ "plugins/slick/slick.min.js" | absURL }}"></script>
+<script src="{{ "plugins/waypoint/jquery.waypoints.min.js" | absURL }}"></script>
+<script src="{{ "plugins/magnafic-popup/jquery.magnific-popup.min.js" | absURL }}"></script>
+<script src="{{ "plugins/tweenmax/TweenMax.min.js" | absURL }}"></script>
+<script src="{{ "plugins/imagesloaded/imagesloaded.min.js" | absURL }}"></script>
+<script src="{{ "plugins/masonry/masonry.min.js" | absURL }}"></script>
+
+{{ $script := resources.Get "js/script.js" | minify }}
+<script src="{{ $script.Permalink }}"></script>
+
+<!-- Form Submission Script -->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var form = document.getElementById("contact-form");
+		if (form) {
+			form.addEventListener("submit", function (ev) {
+				ev.preventDefault();
+				var status = document.getElementById("contact-form-status");
+				var data = new FormData(form);
+				var xhr = new XMLHttpRequest();
+				xhr.open(form.method, form.action);
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState !== XMLHttpRequest.DONE) return;
+					if (xhr.status === 200) {
+						form.reset();
+						status.innerHTML = "Thanks! Your message has been sent.";
+						status.classList.add("text-success");
+					} else {
+						status.innerHTML = "Oops! There was a problem.";
+						status.classList.add("text-danger");
+					}
+				};
+				xhr.send(data);
+			});
+		}
+	});
+</script>

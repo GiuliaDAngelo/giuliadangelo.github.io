@@ -1,0 +1,120 @@
+enable: true
+topTitle: "CV Highlights"
+title: >
+  ## My Journey
+subtitle: >
+  A summary of my professional experience, academic contributions, and educational background.
+tab1Name: "Experience"
+tab2Name: "Publications"
+tab3Name: "Education"
+tab1Target: "experience"
+tab2Target: "publications"
+tab3Target: "education"
+
+experience:
+  - content: >
+      #### Marie Skłodowska-Curie Postdoctoral Fellow
+      *Czech Technical University (Prague, Czechia)*
+
+      Principal Investigator & Project Leader for the ENDEAVOR project, focusing on event-based active vision and neuromorphic computing for object perception.
+    time: 2024 - NOW
+  - content: >
+      #### Postdoctoral Researcher - Computer Vision for Robotics
+      *Italian Institute of Technology (Italy)*
+
+      Led R&D and project management for event-driven perception in robotics.
+    time: 2022 - 2024
+  - content: >
+      #### Visiting Researcher - Embodiment for Robotics
+      *Czech Technical University (Prague, Czechia)*
+
+      Focused on Embodied Cognition and Sensorimotor Contingency Theory for visual robotics.
+    time: May-June, 2023
+  - content: >
+      #### Ph.D. Computer Vision for Robotics (President's Doctoral Scholar)
+      *The University of Manchester & Italian Institute of Technology (IIT)*
+
+      Developed bio-inspired visual attention models using event-driven sensing and neuromorphic platforms for the iCub robot.
+    time: 2019 - 2022
+  - content: >
+      #### Software Engineer - Computer Vision for Robotics
+      *Italian Institute of Technology (Genoa, Italy)*
+
+      Engineered software for a robotic conversational healthcare application with IBM and Vodafone, and a computer vision project with Sony Japan.
+    time: 2018 - 2019
+  - content: >
+      #### Research Fellow, Computer Vision - Predictive Coding & Robotics
+      *King's College of London (London, UK)*
+
+      Designed an egocentric neuromorphic network for 3D space perception using supervised learning.
+    time: 2016 - 2017
+
+publications:
+  - time: 2025
+    content: >
+      **Event-driven figure-ground organisation model for the humanoid robot iCub.**
+      *Nature Communications, 16(1): 1874.*
+
+      G. D'Angelo, S. Voto, M. Iacono, A. Glover, E. Niebur, & C. Bartolozzi.
+  - time: 2025
+    content: >
+      **Wandering around: A bioinspired approach to visual attention through object motion sensitivity.**
+      *arXiv preprint. arXiv:2502.06747.*
+
+      G. D'Angelo, V. Clerico, C. Bartolozzi, M. Hoffmann, P. M. Furlong, & A. Hadjiivanov.
+  - time: 2024
+    content: >
+      **OP-10 Bioinspired intelligent visual attention system for the humanoid robot iCub...**
+      *Submitted for publication.*
+
+      G. D'Angelo & C. Bartolozzi.
+  - time: 2024
+    content: >
+      **A neuromorphic electronic artist for robotic painting.**
+      *Research Square, (4528779).*
+
+      L. Schürmann, G. D'Angelo, G. Indiveri, C. Bartolozzi, & L. Grayver.
+  - time: 2024
+    content: >
+      **Event-driven nearshore and shoreline coastline detection on SpiNNaker...**
+      *Neuromorphic Computing and Engineering, 4(3): 034012.*
+
+      M. Fatahi, P. Boulet, & G. D'Angelo.
+  - time: 2022
+    content: >
+      **Event driven bio-inspired attentive system for the iCub humanoid robot on SpiNNaker.**
+      *Neuromorphic Computing and Engineering, 2(2): 024008.*
+
+      G. D'Angelo, A. Perrett, M. Iacono, S. Furber, & C. Bartolozzi.
+  - time: 2022
+    content: >
+      **A bio-inspired attentive model to predict perceptual saliency in natural scenes.**
+      *Ph.D. Thesis, The University of Manchester (United Kingdom).*
+
+      G. D'Angelo.
+  - time: 2020
+    content: >
+      **Event-Based Eccentric Motion Detection Exploiting Time Difference Encoding.**
+      *Frontiers in Neuroscience, 14: 451.*
+
+      G. D'Angelo, E. Janotte, T. Schoepe, J. O'Keeffe, M. B. Milde, E. Chicca, & C. Bartolozzi.
+  - time: 2019
+    content: >
+      **Proto-object based saliency for event-driven cameras.**
+      *2019 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS).*
+
+      M. Iacono, G. D'Angelo, A. Glover, V. Tikhanoff, E. Niebur, & C. Bartolozzi.
+
+education:
+  - content: >
+      #### PhD in Computer Science (Neuromorphic algorithms) with honors
+      *The University of Manchester*
+    time: 2019 - 2022
+  - content: >
+      #### MSc Degree in Neuroengineering with honors
+      *University of Genoa*
+    time: 2015 - 2017
+  - content: >
+      #### Bachelor's Degree in Biomedical Engineering
+      *University of Genoa*
+    time: 2011 - 2015
