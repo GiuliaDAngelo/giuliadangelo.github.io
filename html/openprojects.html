@@ -7,6 +7,55 @@
 	<link rel="stylesheet" href="../assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 	<style>
+
+		/* Add this to your existing CSS */
+		.project-card.taken {
+			background-color: #f5f5f5;
+			opacity: 0.8;
+			border: 2px solid #ddd;
+		}
+
+		.project-card.taken:hover {
+			transform: none; /* Disable hover effect */
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.project-card.taken .project-image {
+			filter: grayscale(70%);
+		}
+
+		/* Overlay approach */
+		.taken-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(255, 255, 255, 0.85);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 8px;
+			z-index: 5;
+		}
+
+		.taken-overlay-text {
+			background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+			color: white;
+			padding: 1em 2em;
+			border-radius: 10px;
+			font-size: 1.2em;
+			font-weight: bold;
+			text-transform: uppercase;
+			box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+			transform: rotate(-3deg);
+		}
+
+		.project-card.taken .toggle-button {
+			background: #ccc;
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
 		.projects-wrapper {
 			display: flex;
 			flex-direction: column;
@@ -155,6 +204,7 @@
 					<option value="#7" title="data-title"></option>
 					<option value="#8" title="data-title"></option>
 					<option value="#9" title="data-title"></option>
+					<option value="#10" title="data-title"></option>
 				</select>
 			</div>
 
@@ -382,45 +432,49 @@
 					</div>
 				</div>
 
-				<!-- PROJECT CARD 7 -->
-				<div class="project-card">
-					<img src="../images-projects/blink.png" alt="blink" class="project-image" />
-					<div class="project-content">
-						<h3 id="7" data-title="Event-based Bioinspired blink detection">TAKEN - Event-based bioinspired blink detection</h3>
-						<div class="project-type">Master Project/Semestral Project</div>
-						<button class="toggle-button">Show more</button>
-						<div class="project-details">
-						  <p>
-							  This project investigates bioinspired approaches to blink detection as a means of enhancing driver
-							  monitoring systems and improving road safety. Inspired by the efficiency and adaptability of
-							  the human visual system, the project leverages event based vision sensors, a novel class
-							  of neuromorphic cameras that mimic the way biological eyes perceive motion and change.
-							  Unlike traditional frame based cameras, event based sensors capture asynchronous changes in the
-							  visual scene, enabling low latency, high speed, and energy efficient detection of rapid
-							  eye movements such as blinks. These characteristics make them particularly well suited
-							  for real time driver monitoring in dynamic and resource constrained environments such as
-							  automotive settings.
-							  The aim of the project is to develop a robust blink detection pipeline that can operate
-							  reliably under varying lighting conditions, head poses, and occlusions, with a specific
-							  focus on detecting signs of drowsiness or inattention. By integrating insights from neuroscience,
-							  computer vision, and machine learning, this work contributes to the advancement of intelligent
-							  driver assistance systems and the broader field of human centered vehicle safety technologies.						  </p>
-						  <p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Dr. Ana Filipa Sequeira (INESC TEC)</p>
-						  <p><strong>Context:</strong> Neuromorphic vision for efficient and robust blink detection under challenging conditions</p>
-						  <p><strong>Objectives:</strong>Sparse, robust and fast bioinspired event-based blink detection</p>
-						  <p><strong>Workplan:</strong><br />
+			<!-- PROJECT CARD 7 -->
+			<div class="project-card taken">
+				<div class="taken-overlay">
+					<div class="taken-overlay-text">Project Taken</div>
+				</div>
+				<img src="../images-projects/blink.png" alt="blink" class="project-image" />
+				<div class="project-content">
+					<h3 id="7" data-title="Event-based Bioinspired blink detection">Event-based bioinspired blink detection</h3>
+					<div class="project-type">Master Project/Semestral Project</div>
+					<button class="toggle-button" disabled>Show more</button>
+					<div class="project-details">
+						<p>
+							This project investigates bioinspired approaches to blink detection as a means of enhancing driver
+							monitoring systems and improving road safety. Inspired by the efficiency and adaptability of
+							the human visual system, the project leverages event based vision sensors, a novel class
+							of neuromorphic cameras that mimic the way biological eyes perceive motion and change.
+							Unlike traditional frame based cameras, event based sensors capture asynchronous changes in the
+							visual scene, enabling low latency, high speed, and energy efficient detection of rapid
+							eye movements such as blinks. These characteristics make them particularly well suited
+							for real time driver monitoring in dynamic and resource constrained environments such as
+							automotive settings.
+							The aim of the project is to develop a robust blink detection pipeline that can operate
+							reliably under varying lighting conditions, head poses, and occlusions, with a specific
+							focus on detecting signs of drowsiness or inattention. By integrating insights from neuroscience,
+							computer vision, and machine learning, this work contributes to the advancement of intelligent
+							driver assistance systems and the broader field of human centered vehicle safety technologies.
+						</p>
+						<p><strong>Supervision:</strong> Dr. Giulia D'Angelo (CTU), Dr. Ana Filipa Sequeira (INESC TEC)</p>
+						<p><strong>Context:</strong> Neuromorphic vision for efficient and robust blink detection under challenging conditions</p>
+						<p><strong>Objectives:</strong>Sparse, robust and fast bioinspired event-based blink detection</p>
+						<p><strong>Workplan:</strong><br />
 							1. State of the art and literature review on event-based blink detection and bioinspired models<br />
 							2. Implement the blink detector optimized for event-driven input<br />
 							3. Preprocess and collect a new event-based blink detection dataset<br />
 							4. Evaluate performance against conventional vision approaches in challenging conditions<br />
 							5. Deploy and test the system on the iCub robot<br /></p>
-							<p><strong>References:</strong><br />
-								Lenz, Gregor, Sio-Hoi Ieng, and Ryad Benosman. "Event-based face detection and tracking using the dynamics of eye blinks." Frontiers in Neuroscience 14 (2020): 587.<br />
-								Ryan, Cian, et al. "Real-time face & eye tracking and blink detection using event cameras." Neural Networks 141 (2021): 87-97.
-							</p>
-						</div>
+						<p><strong>References:</strong><br />
+							Lenz, Gregor, Sio-Hoi Ieng, and Ryad Benosman. "Event-based face detection and tracking using the dynamics of eye blinks." Frontiers in Neuroscience 14 (2020): 587.<br />
+							Ryan, Cian, et al. "Real-time face & eye tracking and blink detection using event cameras." Neural Networks 141 (2021): 87-97.
+						</p>
 					</div>
 				</div>
+			</div>
 
 
 				<div class="project-card">
@@ -501,6 +555,33 @@
 							</p>
 						</div>
 					</div>
+				</div>
+
+				<!-- PROJECT CARD -->
+				<div class="project-card">
+				   <img src="../images-projects/sAC.png" alt="dynap-se" class="project-image" />
+				   <div class="project-content">
+					  <h3 id="10" data-title="Spiking Attention Control on Dynap-SE for selective visual attention">Spiking Attention Control on Dynap-SE for selective visual attention</h3>
+					  <div class="project-type">Master Project/Semestral Project</div>
+					  <button class="toggle-button">Show more</button>
+					  <div class="project-details">
+						 <p>This project focuses on implementing the spiking attention control (sAC) module from a recent bio-inspired visual attention system on the Dynap-SE neuromorphic platform. The original system integrates event-based vision sensors with a hierarchy of spiking neural networks to detect and track salient objects through object motion sensitivity. At the core of this architecture is a spiking control loop that drives saccadic pan–tilt movements, mimicking biological fixational eye movements and saccades to bring the most salient object into the centre of the visual field.</p>
+						 <p>This project aims to implement this spiking control mechanism, the sAC module, on the Dynap-SE. In the original system the sAC receives the coordinates of the most salient proto-object coordinates from the visual attention module and computes pan and tilt commands via a neural population model implemented using Nengo. This architecture achieved average target-foveation latencies of just 0.124 seconds, with accuracy limited primarily by mechanical constraints rather than neural computation.</p>
+						 <p>As the DYNAP-SE chip comprises 4 cores, each with 256 neurons, its event-driven and massively parallel architecture makes it especially well-suited for closed-loop control applications in robotics and sensorimotor systems. By porting the sAC controller to the DYNAP-SE, this project will validate the feasibility of neuromorphic control in real-world active vision systems.</p>
+						 <p><strong>Supervision:</strong> Prof. Giacomo Indiveri (Institute of Neuroinformatics, University of Zurich, ETH), Prof. Michael Furlong (University of Waterloo), Dr. Giulia D'Angelo (Czech Technical University in Prague)</p>
+						 <p><strong>Context:</strong> Spiking Attention Control on Dynap-SE for visual attention</p>
+						 <p><strong>Objectives:</strong> sAC running on the Dynap-SE neuromorphic platform for selective visual attention</p>
+						 <p><strong>Workplan:</strong><br />
+							1. Literature review and state-of-the-art<br />
+							2. Translation from Nengo simulator to Dynap-SE compatible code<br />
+							3. Test on hardware with the pan-tilt unit<br />
+							4. Accuracy test and final demonstrator<br /></p>
+						 <p><strong>References:</strong><br />
+							[1] Moradi, Saber, et al. "A scalable multicore architecture with heterogeneous memory structures for dynamic neuromorphic asynchronous processors (DYNAPs)." <em>IEEE transactions on biomedical circuits and systems</em> 12.1 (2017): 106-122.<br />
+							[2] D'Angelo, Giulia Veronica, et al. "Wandering around: A bioinspired approach to visual attention through object motion sensitivity." <em>Neuromorphic Computing and Engineering</em> (2025).<br />
+						 </p>
+					  </div>
+				   </div>
 				</div>
 
 
