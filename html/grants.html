@@ -1,296 +1,434 @@
-<!DOCTYPE HTML>
-<!--
-	Helios by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>ENDEAVOR</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	<style>
-		header {
-		  margin-bottom: 0; /* Remove extra margin below the header */
-		}
-		figure.image.featured {
-		  margin-bottom: 0; /* Remove extra margin below the figure */
-		}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Grants \- ENDEAVOR</title>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 
-		p {
-		  margin-top: 0; /* Remove extra margin above the paragraph */
-		}
-	</style>
+  <style>
+    /* Basic tweaks */
+    p { margin-top: 0; }
 
-	</head>
-	<body class="no-sidebar is-preload">
-		<div id="page-wrapper">
+    /* Make container full width so cards can occupy ~50% viewport */
+    .grants-container { max-width: 100%; margin: 0 auto; padding: 0 1rem; box-sizing: border-box; }
+
+    /* Grid: 1 column by default, 2 equal columns from 700px up */
+    .grant-grid-section { padding: 1.25rem 0; }
+    .grant-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    @media (min-width: 700px) {
+      .grant-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* two equal columns ~50% each */
+      }
+    }
+
+    /* Card styling - CHANGED: overflow visible to allow tooltip */
+    .grant-card {
+      box-sizing: border-box;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 1rem;
+      overflow: visible; /* Allow tooltips to overflow */
+      position: relative;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      height: auto;
+    }
+
+    .grant-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      z-index: 2;
+    }
+
+    .grant-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .grant-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Header stacked so image spans almost full width */
+    .grant-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    /* Image fills card width, shown entirely */
+    .grant-header img {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f7f7f7;
+      flex-shrink: 0;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .grant-card:hover .grant-header img {
+      transform: scale(1.05);
+    }
+
+    /* Small-logo layout: apply class `has-small-logo` on .grant-header when you want row layout */
+    .grant-header.has-small-logo {
+      flex-direction: row;
+      align-items: center;
+    }
+    .grant-header.has-small-logo img {
+      width: 64px;
+      height: 64px;
+      max-height: none;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .grant-title { font-weight: 700; margin: 0; font-size: 1rem; line-height: 1.1; }
+    .grant-sub { margin: 0; color: #666; font-size: 0.875rem; }
+
+    /* NEW: Tooltip styling (inspired by speakers page) */
+    .grant-details {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      border-radius: 15px;
+      padding: 1.5rem;
+      width: 450px;
+      max-width: 90vw;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 1000;
+      max-height: 400px;
+      overflow-y: auto;
+      color: #333;
+      font-size: 0.9rem;
+    }
+
+    /* Arrow pointing down (for tooltips above card) */
+    .grant-details::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid rgba(255, 255, 255, 0.98);
+    }
+
+    .grant-card:hover .grant-details {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-10px);
+      pointer-events: auto;
+    }
+
+    .grant-details:hover {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .grant-details h4 {
+      color: #2c3e50;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 0.3rem;
+    }
+
+    .grant-details p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .grant-details ul {
+      margin: 0.5rem 0 1rem 1rem;
+      padding-left: 1rem;
+    }
+
+    .grant-details li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* Hover hint */
+    .hover-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      padding: 0.3rem 0.6rem;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .grant-card:hover .hover-hint {
+      opacity: 0;
+    }
+
+    /* Bottom row adjustments */
+    .grant-card.bottom-row .grant-details {
+      top: auto;
+      bottom: -20px;
+    }
+
+    .grant-card.bottom-row .grant-details::before {
+      top: -10px;
+      bottom: auto;
+      border-top: none;
+      border-bottom: 10px solid rgba(255, 255, 255, 0.98);
+    }
+
+    .grant-card.bottom-row:hover .grant-details {
+      transform: translateX(-50%) translateY(10px);
+    }
+
+    /* Small screens: adjust tooltip positioning */
+    @media (max-width: 768px) {
+      .grant-details {
+        width: 320px;
+        padding: 1rem;
+        font-size: 0.85rem;
+      }
+
+      .grant-card:hover {
+        transform: translateY(-4px) scale(1.01);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grant-details {
+        width: 280px;
+        left: 10px;
+        transform: none;
+      }
+
+      .grant-details::before {
+        left: 50%;
+      }
+
+      .grant-card:hover {
+        transform: none;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      }
+
+      .grant-header.has-small-logo {
+        flex-direction: column;
+      }
+
+      .grant-header.has-small-logo img {
+        width: 100%;
+        max-height: 180px;
+        border-radius: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body class="no-sidebar is-preload">
+  <div id="page-wrapper">
     <!-- Nav -->
     <nav id="nav">
       <ul>
- 		<li><a href="../index.html#header">Who I am</a>
-		  <ul>
-			  <li><a href="../index.html#features">Biography</a></li>
-			  <li><a href="../index.html#cv">Curriculum Vitae</a></li>
-		  </ul>
-		  </li>
-        <li><a href="npclab.html">NPC Lab</a>
+        <li><a href="../index.html#header">Who I am</a>
+          <ul>
+            <li><a href="../index.html#features">Biography</a></li>
+            <li><a href="../index.html#cv">Curriculum Vitae</a></li>
+          </ul>
         </li>
-        <li><a href="grantsawards.html">Grants & Awards</a></li>
+        <li><a href="npclab.html">NPC Lab</a></li>
+        <li><a href="grantsawards.html">Grants &amp; Awards</a></li>
         <li><a href="podcasts.html">My Scientific Podcasts</a></li>
         <li><a href="contactme.html">Contact me!</a></li>
       </ul>
     </nav>
 
+    <!-- Main -->
+    <div class="wrapper style1">
+      <div class="container">
+        <div class="row">
+          <div class="grants-container">
+            <section class="grant-grid-section">
+              <div class="grant-grid">
 
-			<!-- Main -->
-				<div class="wrapper style1">
 
-					<div class="container">
 
-						<div class="row">
-                          <header>
-								<figure class="image featured">
-									<h3 style="text-align: center;">Maria Skłodowska-Curie ENDEAVOR Project</h3>
-									<p style="text-align: center;">Event-Driven Active Vision for Object Perception (ENDEAVOR)</p>
-									<img src="../images/endeavor.png" alt="iCub robot with neuromorphic sensors" style="width: 50%; height: auto;  display: block; margin: 0 auto;" />
-								</figure>
-                          	</header>
-							<p><strong>Principal Investigator:</strong> Dr. Giulia D’Angelo<br>
-							<strong>Host Institution:</strong> Czech Technical University in Prague (CTU)<br>
-							<strong>Fellowship:</strong> Marie Skłodowska-Curie Action (MSCA)</p>
+                <!-- PIONEER -->
+                <article class="grant-card" tabindex="0" role="button" aria-expanded="false" aria-labelledby="grant-pioneer-title">
+                  <div class="grant-header">
+                    <img src="../images/GACR.png" alt="PIONEER logo" />
+                    <div>
+                      <h4 id="grant-pioneer-title" class="grant-title"> (2026–2028) PIONEER — Neuromorphic Active Vision for Embodied Object Perception</h4>
+                      <p class="grant-sub">GACR Standard Projects / CTU </p>
+                    </div>
+                  </div>
 
-							<section>
-							  <h3>Overview</h3>
-							  <p>
-								ENDEAVOR is a cutting-edge project that enhances robotic vision using event-driven cameras,
-								spiking neural networks, and infant-inspired active exploration mechanisms. Unlike traditional
-								vision systems that rely on static frames, ENDEAVOR enables robots like <strong>iCub</strong>
-								to move, observe, and interact with objects in a bioinspired and energy-efficient manner.
-							  </p>
-							</section>
+                  <div class="grant-details">
+                    <p><strong>Overview:</strong> PIONEER seeks to decode biological active sensing principles, leveraging low-power and low-latency neuromorphic sensing and computing to develop an intelligent system that optimizes visual information processing. The project develops a fully neuromorphic end-to-end active vision architecture, assesses biological realism in neuromorphic vision, and integrates active embodied object perception in humanoid robotics using the iCub platform.</p>
 
-                            <section>
-                              <h3>Objectives</h3>
-                              <ul>
-                                <li><strong>O1 – EDAV Model:</strong> Adapt a frame-based vision model to event-driven input using iCub’s head and wrist movements.</li>
-                                <li><strong>O2 – SNN EDAV:</strong> Implement a spiking neural network version using neuromorphic hardware for real-time, low-power operation.</li>
-                                <li><strong>O3 – Benchmarking:</strong> Compare models based on accuracy, latency, and energy use on the YCB object dataset.</li>
-                              </ul>
-                            </section>
+                    <p><strong>Work Packages:</strong></p>
+                    <ul>
+                      <li><strong>WP1 – Neuromorphic Track:</strong> Develop integrated fully neuromorphic end-to-end active vision architecture with log-polar retina, V1 edge extraction, and OMS cells for motion detection using Speck neuromorphic hardware.</li>
+                      <li><strong>WP2 – Biologically Plausible Track:</strong> Explore benefits of incorporating greater biological realism by replacing cortical stages with biologically detailed recurrent SNN models of primate V1 and V2, determining optimal abstraction level for robotics.</li>
+                      <li><strong>WP3 – Active Vision for Object Perception:</strong> Integrate Sensorimotor Contingency Theory (SMCT) rules for embodied object perception through saccadic and wrist movements, enabling object discrimination and motion prediction on iCub robot.</li>
+                    </ul>
 
-                            <section>
-                              <h3>Technologies</h3>
-                              <ul>
-                                <li>DAVIS346 event-driven cameras</li>
-                                <li>Speck neuromorphic chip with sCNN support</li>
-                                <li>iCub humanoid robot with 3D-printed mounts</li>
-                                <li>Sensorimotor Contingency Theory (SMCT) for perception-action coupling</li>
-                              </ul>
-                            </section>
+                    <p><strong>Technologies:</strong> Speck neuromorphic platform with DYNAP-CNN chip, DAVIS346 COLOR event-driven cameras, iCub humanoid robot with 3D-printed camera mounts, pan-and-tilt unit (PTU), spiking neural networks, YCB object dataset.</p>
 
-                            <section>
-                              <h3>Impact</h3>
-                              <p>
-                                ENDEAVOR bridges neuroscience, robotics, and AI to push forward energy-efficient perception in robotics.
-                                The project supports the EU’s Sustainable Development Goals by advancing <em>low-power intelligent systems</em>,
-                                and aims to establish benchmarks for neuromorphic robotic vision.
-                              </p>
-                            </section>
-                          </article>
-                        </section>
-                      </div>
-					</div>
+                    <p><strong>Impact:</strong> PIONEER advances low-latency, energy-efficient processing by implementing a fully active neuromorphic system for object perception. The project bridges neuroscience, robotics, and AI, supporting EU Sustainable Development Goals by developing low-power intelligent systems. It establishes new benchmarks for neuromorphic robotic vision and offers alternatives to conventional feedforward computer vision approaches that rely on large datasets.</p>
+                  </div>
+                  <div class="hover-hint">Hover for details</div>
+                </article>
 
-				</div>
 
-		<!-- Footer -->
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<section class="contact">
-							<header>
-								<h3>Giulia D'Angelo</h3>
-								<h4>giulia.dangelo@fel.cvut.cz</h4>
-							</header>
-							<ul class="icons">
-								<li><a href="https://www.linkedin.com/in/giuliadangelo/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">Linkedin</span></a></li>
-								<li><a href="https://github.com/GiuliaDAngelo" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-								<li><a href="https://www.youtube.com/@gvmdangelo" class="icon brands fa-youtube" target="_blank"><span class="label">YouTube</span></a></li>
-								<li><a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ" class="icon solid fa-graduation-cap" target="_blank"><span class="label">Google Scholar</span></a></li>
-							</ul>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
+				                <!-- ENDEAVOR -->
+                <article class="grant-card" tabindex="0" role="button" aria-expanded="false" aria-labelledby="grant-endeavor-title">
+                  <div class="grant-header">
+                    <img src="../images/endeavor.png" alt="ENDEAVOR logo" />
+                    <div>
+                      <h4 id="grant-endeavor-title" class="grant-title">(2024–2026) ENDEAVOR — Event-Driven Active Vision for Object Perception</h4>
+                      <p class="grant-sub">Marie Skłodowska-Curie Action / CTU </p>
+                    </div>
+                  </div>
 
-		</div>
+                  <div class="grant-details">
+                    <p><strong>Overview:</strong> ENDEAVOR is a cutting-edge project that enhances robotic vision using event-driven cameras, spiking neural networks, and infant-inspired active exploration mechanisms. Unlike traditional vision systems that rely on static frames, ENDEAVOR enables robots like iCub to move, observe, and interact with objects in a bioinspired and energy-efficient manner.</p>
 
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+                    <p><strong>Objectives:</strong></p>
+                    <ul>
+                      <li><strong>O1 – EDAV Model:</strong> Adapt a frame-based vision model to event-driven input using iCub's head and wrist movements.</li>
+                      <li><strong>O2 – SNN EDAV:</strong> Implement a spiking neural network version using neuromorphic hardware for real-time, low-power operation.</li>
+                      <li><strong>O3 – Benchmarking:</strong> Compare models based on accuracy, latency, and energy use on the YCB object dataset.</li>
+                    </ul>
 
-	</body>
+                    <p><strong>Technologies:</strong> DAVIS346 event-driven cameras, Speck neuromorphic chip with sCNN support, iCub humanoid robot with 3D-printed mounts, Sensorimotor Contingency Theory (SMCT) for perception-action coupling.</p>
+
+                    <p><strong>Impact:</strong> ENDEAVOR bridges neuroscience, robotics, and AI to push forward energy-efficient perception in robotics. The project supports the EU's Sustainable Development Goals by advancing low-power intelligent systems, and aims to establish benchmarks for neuromorphic robotic vision.</p>
+                  </div>
+                  <div class="hover-hint">Hover for details</div>
+                </article>
+
+
+                <!-- Add more .grant-card blocks as needed -->
+
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <section class="contact">
+              <header>
+                <h3>Giulia D'Angelo</h3>
+                <h4><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b5c524e57525a155f5a555c5e57547b5d5e5715584d4e4f155841">[email&#160;protected]</a></h4>
+              </header>
+              <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/giuliadangelo/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">Linkedin</span></a></li>
+                <li><a href="https://github.com/GiuliaDAngelo" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                <li><a href="https://www.youtube.com/@gvmdangelo" class="icon brands fa-youtube" target="_blank"><span class="label">YouTube</span></a></li>
+                <li><a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ" class="icon solid fa-graduation-cap" target="_blank"><span class="label">Google Scholar</span></a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts: tooltip positioning and accessibility -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    (function () {
+      // Auto-detect which grant cards are in bottom rows and adjust tooltip positioning
+      function adjustTooltipPositioning() {
+        const grantCards = document.querySelectorAll('.grant-card');
+        const viewportHeight = window.innerHeight;
+
+        grantCards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const cardBottom = rect.bottom;
+
+          // If card is in bottom half of visible area, show tooltip below
+          if (cardBottom > viewportHeight * 0.6) {
+            card.classList.add('bottom-row');
+          } else {
+            card.classList.remove('bottom-row');
+          }
+        });
+      }
+
+      // Run on page load and resize
+      document.addEventListener('DOMContentLoaded', adjustTooltipPositioning);
+      window.addEventListener('resize', adjustTooltipPositioning);
+      window.addEventListener('scroll', adjustTooltipPositioning);
+
+      // Accessibility: update aria-expanded on focus/blur
+      document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.querySelectorAll('.grant-card');
+        cards.forEach(function (card) {
+          card.addEventListener('focusin', function () {
+            card.setAttribute('aria-expanded', 'true');
+          });
+          card.addEventListener('focusout', function () {
+            card.setAttribute('aria-expanded', 'false');
+          });
+        });
+      });
+    })();
+  </script>
+
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.dropotron.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8" />-->
-<!--  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />-->
-<!--  <title>ENDEAVOR Project – Giulia D'Angelo</title>-->
-<!--  <link rel="stylesheet" href="../assets/css/main.css" />-->
-<!--  <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>-->
-
-<!--</head>-->
-<!--<body class="left-sidebar is-preload">-->
-<!--  <div id="page-wrapper">-->
-
-<!--    &lt;!&ndash; Header &ndash;&gt;-->
-<!--    <nav id="nav">-->
-<!--      <ul>-->
-<!--        <li><a href="#header">Home</a></li>-->
-<!--        <li><a href="#features">Who I Am</a></li>-->
-<!--        <li><a href="npclab.html">Research</a>-->
-<!--          <ul>-->
-<!--            <li><a href="projects.html">Projects</a></li>-->
-<!--            <li><a href="openprojects.html">Open Projects</a></li>-->
-<!--            <li><a href="grants.html">ENDEAVOR</a></li>-->
-<!--            <li><a href="publications.html">Publications</a></li>-->
-<!--          </ul>-->
-<!--        </li>-->
-<!--        <li><a href="cv.html">CV</a></li>-->
-<!--        <li><a href="grantsawards.html">Grants & Awards</a></li>-->
-<!--        <li><a href="podcasts.html">Scientific Podcasts</a></li>-->
-<!--        <li><a href="contactme">Contact Me</a></li>-->
-<!--      </ul>-->
-<!--    </nav>-->
-
-<!--    &lt;!&ndash; Main Content &ndash;&gt;-->
-<!--    <main class="wrapper style1">-->
-<!--      <div class="container">-->
-<!--        <div class="row gtr-200">-->
-
-<!--          &lt;!&ndash; Main Content (now on the left) &ndash;&gt;-->
-<!--          <section class="col-8 col-12-mobile imp-mobile" id="content">-->
-<!--            <article id="main">-->
-<!--              <header>-->
-<!--                <h3>Maria Skłodowska-Curie ENDEAVOR Project</h3>-->
-<!--                <p>Event-Driven Active Vision for Object Perception (ENDEAVOR)</p>-->
-<!--              </header>-->
-
-<!--              <figure class="image featured">-->
-<!--                <img src="../images/endeavor.png" alt="iCub robot with neuromorphic sensors" />-->
-<!--              </figure>-->
-
-<!--              <p><strong>Principal Investigator:</strong> Dr. Giulia D’Angelo<br>-->
-<!--              <strong>Host Institution:</strong> Czech Technical University in Prague (CTU)<br>-->
-<!--              <strong>Fellowship:</strong> Marie Skłodowska-Curie Action (MSCA)</p>-->
-
-<!--              <section>-->
-<!--                <h3>Overview</h3>-->
-<!--                <p>-->
-<!--                  ENDEAVOR is a cutting-edge project that enhances robotic vision using event-driven cameras,-->
-<!--                  spiking neural networks, and infant-inspired active exploration mechanisms. Unlike traditional-->
-<!--                  vision systems that rely on static frames, ENDEAVOR enables robots like <strong>iCub</strong>-->
-<!--                  to move, observe, and interact with objects in a bioinspired and energy-efficient manner.-->
-<!--                </p>-->
-<!--              </section>-->
-
-<!--              <section>-->
-<!--                <h3>Objectives</h3>-->
-<!--                <ul>-->
-<!--                  <li><strong>O1 – EDAV Model:</strong> Adapt a frame-based vision model to event-driven input using iCub’s head and wrist movements.</li>-->
-<!--                  <li><strong>O2 – SNN EDAV:</strong> Implement a spiking neural network version using neuromorphic hardware for real-time, low-power operation.</li>-->
-<!--                  <li><strong>O3 – Benchmarking:</strong> Compare models based on accuracy, latency, and energy use on the YCB object dataset.</li>-->
-<!--                </ul>-->
-<!--              </section>-->
-
-<!--              <section>-->
-<!--                <h3>Technologies</h3>-->
-<!--                <ul>-->
-<!--                  <li>DAVIS346 event-driven cameras</li>-->
-<!--                  <li>Speck neuromorphic chip with sCNN support</li>-->
-<!--                  <li>iCub humanoid robot with 3D-printed mounts</li>-->
-<!--                  <li>Sensorimotor Contingency Theory (SMCT) for perception-action coupling</li>-->
-<!--                </ul>-->
-<!--              </section>-->
-
-<!--              <section>-->
-<!--                <h3>Impact</h3>-->
-<!--                <p>-->
-<!--                  ENDEAVOR bridges neuroscience, robotics, and AI to push forward energy-efficient perception in robotics.-->
-<!--                  The project supports the EU’s Sustainable Development Goals by advancing <em>low-power intelligent systems</em>,-->
-<!--                  and aims to establish benchmarks for neuromorphic robotic vision.-->
-<!--                </p>-->
-<!--              </section>-->
-
-<!--            </article>-->
-<!--          </section>-->
-
-<!--          &lt;!&ndash; Sidebar (now on the right) &ndash;&gt;-->
-<!--          <aside class="col-4 col-12-mobile" id="sidebar">-->
-<!--            &lt;!&ndash; Optional Sidebar Content &ndash;&gt;-->
-<!--          </aside>-->
-
-<!--        </div>-->
-<!--      </div>-->
-<!--    </main>-->
-
-<!--    &lt;!&ndash; Footer &ndash;&gt;-->
-<!--		&lt;!&ndash; Footer &ndash;&gt;-->
-<!--		<div id="footer">-->
-<!--			<div class="container">-->
-<!--				<div class="row">-->
-<!--					<div class="col-12">-->
-<!--						<section class="contact">-->
-<!--							<header>-->
-<!--								<h3>Giulia D'Angelo</h3>-->
-<!--								<h4>giulia.dangelo@fel.cvut.cz</h4>-->
-<!--							</header>-->
-<!--							<ul class="icons">-->
-<!--								<li><a href="https://www.linkedin.com/in/giuliadangelo/" class="icon brands fa-linkedin-in" target="_blank"></a></li>-->
-<!--								<li><a href="https://github.com/GiuliaDAngelo" class="icon brands fa-github" target="_blank"></a></li>-->
-<!--								<li><a href="https://www.youtube.com/@gvmdangelo" class="icon brands fa-youtube" target="_blank"></a></li>-->
-<!--								<li><a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ" class="icon solid fa-graduation-cap" target="_blank"></a></li>-->
-<!--							</ul>-->
-<!--						</section>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Scripts &ndash;&gt;-->
-<!--  <script src="../assets/js/jquery.min.js"></script>-->
-<!--  <script src="../assets/js/jquery.dropotron.min.js"></script>-->
-<!--  <script src="../assets/js/jquery.scrolly.min.js"></script>-->
-<!--  <script src="../assets/js/jquery.scrollex.min.js"></script>-->
-<!--  <script src="../assets/js/browser.min.js"></script>-->
-<!--  <script src="../assets/js/breakpoints.min.js"></script>-->
-<!--  <script src="../assets/js/util.js"></script>-->
-<!--  <script src="../assets/js/main.js"></script>-->
-<!--</body>-->
-<!--</html>-->
