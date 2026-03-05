@@ -2197,9 +2197,9 @@ input, select, textarea {
 		#header {
 		  position: relative;
 		  background-color: #ffffff; /* Sets the background to white */
-		  background-image: url("../../images/mesmall.png");
+		  background-image: url("../../images/me.png");
 		  background-repeat: no-repeat;
-		  background-size: 20%;
+		  background-size: 60%;
 		  background-position: center 15%; /* Moves the image up */
 		  background-attachment: fixed;
 		  color: #1C0920;
