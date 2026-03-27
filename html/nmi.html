@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>A Benchmarking Framework for Embodied Neuromorphic Agents</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+
+  <style>
+    .image-frame {
+      text-align: center;
+      padding: 1em;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0.5em;
+    }
+
+    .image-frame img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .image-frame img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .image-frame .fa-link {
+      margin: 0.5em;
+      font-size: 2em;
+      color: gray;
+      transition: transform 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
+      border: none;
+      outline: none;
+    }
+
+    .image-frame .fa-link:hover,
+    .image-frame .fa-link:focus {
+      transform: scale(1.2);
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    .authors-block {
+      font-size: 0.88em;
+      color: #555;
+      line-height: 1.7;
+      margin: 0.5em 0 0.8em;
+    }
+
+    .authors-block .me {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .metrics-inline {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6em;
+      margin: 0.8em 0;
+    }
+
+    .metrics-inline .pill {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 0.25em 0.85em;
+      font-size: 0.78em;
+      color: #555;
+    }
+
+    .quote-block {
+      border-left: 3px solid #ccc;
+      margin: 1em 0;
+      padding: 0.6em 1em;
+      font-style: italic;
+      color: #555;
+      font-size: 0.88em;
+      line-height: 1.6;
+      text-align: left;
+      background: #fafafa;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .quote-block cite {
+      display: block;
+      margin-top: 0.4em;
+      font-style: normal;
+      font-size: 0.85em;
+      color: #999;
+    }
+
+    .body-text {
+      text-align: left;
+      font-size: 0.88em;
+      color: #444;
+      line-height: 1.75;
+      margin: 0.5em 0;
+    }
+
+    .task-list {
+      text-align: left;
+      font-size: 0.85em;
+      color: #444;
+      line-height: 1.8;
+      padding-left: 1.2em;
+      margin: 0.5em 0 0.8em;
+    }
+
+    .citation-block {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 0.9em 1em;
+      font-size: 0.8em;
+      color: #555;
+      line-height: 1.7;
+      text-align: left;
+      margin-top: 0.8em;
+    }
+
+    .citation-block a {
+      color: #777;
+      text-decoration: underline;
+    }
+
+    .citation-block a:hover {
+      color: #333;
+    }
+  </style>
+</head>
+<body class="no-sidebar is-preload">
+  <div id="page-wrapper">
+
+    <!-- Nav -->
+    <nav id="nav">
+      <ul>
+        <li><a href="../index.html#header">Who I am</a>
+          <ul>
+            <li><a href="../index.html#features">Biography</a></li>
+            <li><a href="../index.html#cv">Curriculum Vitae</a></li>
+          </ul>
+        </li>
+        <li><a href="npclab.html">NPC Lab</a></li>
+        <li><a href="grantsawards.html">Grants, News & Awards</a></li>
+        <li><a href="podcasts.html">My Scientific Podcasts</a></li>
+        <li><a href="contactme.html">Contact me!</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+      <div class="container">
+        <div class="row">
+
+          <!-- Publication image + title + links -->
+          <article class="col-12 special">
+            <div class="image-frame">
+              <div style="display:flex; align-items:flex-start; gap:1.5em; text-align:left;">
+                <img src="../images/NMI.png"
+                     alt="A benchmarking framework for embodied neuromorphic agents"
+                     style="width:40%; max-width:320px; flex-shrink:0; border-radius:10px; transition:transform 0.3s ease;"
+                     onmouseover="this.style.transform='scale(1.03)'"
+                     onmouseout="this.style.transform='scale(1)'" />
+                <div style="flex:1;">
+                  <p style="margin:0 0 0.4em;">
+                    <strong>Nature Machine Intelligence, 2026</strong><br />
+                    <em>Perspective</em> &nbsp;·&nbsp; Published 11 March 2026<br />
+                    Vol. 8, pp. 300–312
+                  </p>
+                  <p style="font-size:1em; font-weight:600; margin:0.5em 0 0.8em; line-height:1.4;">
+                    A benchmarking framework for embodied neuromorphic agents
+                  </p>
+                  <p style="font-size:0.85em; color:#555; line-height:1.7; margin:0 0 0.8em;">
+                    Enabling robots to swiftly, robustly and efficiently interact with a dynamic environment
+                    remains a key challenge. The robotic community can draw inspiration from the co-adaptation
+                    and synergistic interplay between animals' brains and bodies, which underpins embodied
+                    intelligence. Soft robots and neuromorphic technology offer a natural solution to such challenges.
+                  </p>
+                  <a href="https://www.nature.com/articles/s42256-026-01197-w" target="_blank"
+                     class="icon solid fa-link" title="Read the paper"
+                     style="font-size:1.6em;"></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Authors + metrics -->
+          <article class="col-12 special">
+            <div class="image-frame">
+              <p><strong>Authors</strong></p>
+              <div class="authors-block">
+                Giulia D'Angelo, Jens E. Pedersen, Taimoor Hassan, Matteo Cianchetti,
+                Josh Bongard, Fumiya Iida, Giacomo Indiveri, Matej Hoffmann,
+                Cecilia Laschi, Chiara De Luca, Chiara Bartolozzi &amp; Elisa Donati
+              </div>
+              <p style="font-size:0.82em; color:#666; margin: 0.6em 0 0.3em; line-height:1.7;">
+                Czech Technical University in Prague (Czech Republic) &nbsp;·&nbsp;
+                Istituto Italiano di Tecnologia, Genoa (Italy) &nbsp;·&nbsp;
+                Technical University of Denmark, DTU Electro (Denmark) &nbsp;·&nbsp;
+                Ghulam Ishaq Khan Institute of Engineering Sciences and Technology (Pakistan) &nbsp;·&nbsp;
+                BioRobotics Institute, Scuola Superiore Sant'Anna, Pisa (Italy) &nbsp;·&nbsp;
+                University of Vermont (USA) &nbsp;·&nbsp;
+                University of Cambridge (UK) &nbsp;·&nbsp;
+                Institute of Neuroinformatics, University of Zurich and ETH Zurich (Switzerland) &nbsp;·&nbsp;
+                National University of Singapore, Advanced Robotics Centre (Singapore)
+              </p>
+              <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.6em; margin:0.8em 0;">
+                <span style="background:#f4f4f4; border:1px solid #ddd; border-radius:20px; padding:0.25em 0.85em; font-size:0.78em; color:#555;">8 Countries</span>
+                <span style="background:#f4f4f4; border:1px solid #ddd; border-radius:20px; padding:0.25em 0.85em; font-size:0.78em; color:#555;">12 Co-authors</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Embodied intelligence -->
+          <article class="col-12 special">
+            <div class="image-frame">
+              <p><strong>Towards Embodied Intelligence</strong></p>
+              <p class="body-text">
+                Developing robots that can function outside laboratory conditions faces a fundamental
+                challenge: it is no longer sufficient for a robot simply to complete a task. It must
+                do so quickly, reliably, with low energy consumption, and safely in contact with its
+                surroundings. This has turned research attention towards <em>embodied intelligence</em>
+                — an approach in which intelligent behaviour does not arise solely in a computational
+                brain, but from the interplay of control, body, and environment.
+              </p>
+              <div class="quote-block">
+                "Today's robotic systems can no longer be evaluated solely on whether they reach a goal.
+                We need to track how quickly they respond, how efficiently they use energy, how they adapt
+                to environmental changes, and how well they exploit the physical properties of their own body.
+                We show that combining neuromorphic computing and soft robotics offers a natural solution
+                to these challenges — and that is precisely what our evaluation framework addresses."
+                <cite>— Giulia D'Angelo, CTU FEL</cite>
+              </div>
+            </div>
+          </article>
+
+          <!-- New metrics -->
+          <article class="col-12 special">
+            <div class="image-frame">
+              <p><strong>New Metrics for a New Generation of Robots</strong></p>
+              <p class="body-text">
+                The framework combines classical robotics indicators with metrics that better capture
+                the behaviour of biologically inspired systems. Beyond task success, it tracks:
+                <em>execution time</em> and <em>reaction time</em> across behavioural levels (reflex
+                &lt;10 ms, reactive &lt;100 ms, adaptive &lt;1 s); <em>total power consumption</em>
+                across sensors, actuation, computation and training; <em>system complexity</em> in
+                terms of sensor count, network parameters and model architecture; <em>task
+                progression</em> and forwards/backwards transfer across tasks; <em>agility</em>
+                in performing fast and efficient movements; and <em>environmental disruption</em>
+                during operation.
+              </p>
+              <p class="body-text">
+                This unified approach provides a comprehensive baseline for evaluating systems that
+                aim to match or exceed the performance of classical systems, enabling multi-objective
+                optimisation tailored to specific application requirements.
+              </p>
+              <p class="body-text">
+                The framework proposes four benchmark task categories of progressively increasing complexity,
+                inspired by the RoboSoft Challenge Competition. Each task challenges the system's ability
+                to coordinate sensing, computation and actuation across different levels of control,
+                highlighting the strengths of neuromorphic architectures in handling both internal
+                variations and external environmental dynamics.
+              </p>
+
+              <p style="text-align:left; font-size:0.85em; font-weight:600; color:#333; margin:1em 0 0.3em;">
+                1. Precision Manoeuvring — Navigation among static and dynamic obstacles
+              </p>
+              <p class="body-text" style="margin-top:0;">
+                The robot navigates through progressively narrowing apertures, executes constrained
+                angular turns around rigid obstacles, and avoids unstable elements that fall if touched.
+                This tests precision motion control and real-time path planning. Real-world applications
+                include assistive robots in hospitals, search-and-rescue missions, and agricultural
+                robots in greenhouses.
+              </p>
+
+              <p style="text-align:left; font-size:0.85em; font-weight:600; color:#333; margin:1em 0 0.3em;">
+                2. Adaptive Terrain — Locomotion across varied terrain types
+              </p>
+              <p class="body-text" style="margin-top:0;">
+                The robot traverses mixed surfaces including cardboard, sand, and inclined trapezoidal
+                slopes (7° ascent and descent), requiring flexible locomotion strategies to handle
+                changes in friction and surface compliance. Relevant to stair-climbing robots,
+                planetary exploration rovers, and quadruped robots used in construction sites.
+              </p>
+
+              <p style="text-align:left; font-size:0.85em; font-weight:600; color:#333; margin:1em 0 0.3em;">
+                3. Parameters Adaptation — Adaptive control under changing mechanical properties
+              </p>
+              <p class="body-text" style="margin-top:0;">
+                The robot adjusts its internal control parameters in response to changes in body
+                stiffness (low to high and back), challenging the controller's robustness to
+                alterations in the physical system — analogous to exoskeletons adapting to
+                user gait, or robots adapting to terrain stiffness.
+              </p>
+
+              <p style="text-align:left; font-size:0.85em; font-weight:600; color:#333; margin:1em 0 0.3em;">
+                4. Grasping and Manipulation — Interaction with rigid and deformable objects
+              </p>
+              <p class="body-text" style="margin-top:0;">
+                Three manipulation tasks evaluate dexterity and control precision: lifting and holding
+                a rigid object (500 ml water bottle) for 7 seconds without destabilising it; handling
+                a deformable object (empty flexible bottle) without excessive compression or slippage;
+                and solving the Tower of Hanoi with three rings in at most 11 moves. Applications
+                include human–machine interaction, surgical robotic systems, and pick-and-place systems.
+              </p>
+              <div class="quote-block">
+                "The aim is to offer the research community a shared, open, and reproducible foundation
+                on which different robotic control approaches can be fairly compared under conditions
+                closer to the real world."
+                <cite>— Giulia D'Angelo, CTU FEL</cite>
+              </div>
+            </div>
+          </article>
+
+          <!-- Neuromorphic + soft robotics -->
+          <article class="col-12 special">
+            <div class="image-frame">
+              <p><strong>Neuromorphic Computing Meets Soft Robotics</strong></p>
+              <p class="body-text">
+                The study connects two key areas of contemporary robotics. Neuromorphic systems
+                mimic the operation of the nervous system, enabling fast and energy-efficient
+                information processing. Soft robotics works with compliant materials — such as
+                silicone — instead of traditional rigid metal and plastic structures, giving robots
+                a practically infinite number of degrees of freedom, much like an octopus tentacle.
+                Biological inspiration allows better environmental adaptation and safer human
+                interaction; co-author Cecilia Laschi is a pioneer of this direction through her
+                robotic octopus project.
+              </p>
+              <p class="body-text">
+                Together, these two fields open a path to robots better suited for dynamic,
+                unpredictable, or hazardous environments.
+              </p>
+            </div>
+          </article>
+
+          <!-- CTU context -->
+          <article class="col-12 special">
+            <div class="image-frame">
+              <p><strong>Research at CTU FEL</strong></p>
+              <p class="body-text">
+                The publication reinforces the research profile of Dr. Giulia D'Angelo, who at
+                CTU FEL develops work at the intersection of neuroscience, artificial intelligence,
+                and robotics. As Assistant Professor, she leads the
+                <strong>Neuroinspired Perception and Cognition (NPC) Lab</strong>, focused on
+                event-based vision and neuromorphic computing for energy-efficient active vision
+                systems in real time.
+              </p>
+              <div class="quote-block">
+                "What is valuable about this work is that it shows the need to evaluate robotic
+                systems as a whole. Intelligence does not arise only in the control architecture,
+                but in the constant interplay between computation, body, and environment — an area
+                we have long been pursuing at FEL."
+                <cite>— Matěj Hoffmann, CTU FEL</cite>
+              </div>
+            </div>
+          </article>
+
+          <!-- Press & citation -->
+          <article class="col-12 special">
+            <div class="image-frame">
+              <p>
+                <strong>Press Coverage</strong><br />
+                CTU FEL Press Release (Czech)
+                <a href="https://fel.cvut.cz/cs/aktualne/novinky/83822-jak-merit-inteligenci-robotu-inspirovanych-prirodou-studie-s-prvni-autorkou-z-fel-cvut-navrhuje-novy-zpusob-hodnoceni-robotickych-systemu"
+                   target="_blank" class="icon solid fa-link" title="Press release" style="font-size: 0.8em;"></a>
+              </p>
+              <div class="citation-block">
+                <strong>Cite:</strong>
+                D'Angelo, G., Pedersen, J.E., Hassan, T., et al.
+                A benchmarking framework for embodied neuromorphic agents.
+                <em>Nat Mach Intell</em> <strong>8</strong>, 300–312 (2026).
+                <a href="https://doi.org/10.1038/s42256-026-01197-w" target="_blank">
+                  https://doi.org/10.1038/s42256-026-01197-w
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <section class="contact">
+              <header>
+                <h3>Giulia D'Angelo</h3>
+                <h4>giulia.dangelo@fel.cvut.cz</h4>
+              </header>
+              <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/giuliadangelo/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">Linkedin</span></a></li>
+                <li><a href="https://github.com/GiuliaDAngelo" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                <li><a href="https://www.youtube.com/@gvmdangelo" class="icon brands fa-youtube" target="_blank"><span class="label">YouTube</span></a></li>
+                <li><a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ" class="icon solid fa-graduation-cap" target="_blank"><span class="label">Google Scholar</span></a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.dropotron.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+</html>
