@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Spike Runner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050506;
+    --on-event:#3CFF6E;
+    --off-event:#FF3B6B;
+    --neuron:#EAF6FF;
+    --accent:#5CE1FF;
+    --dim:#3a3a42;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0; padding:0; width:100%; height:100%;
+    background:var(--bg);
+    overflow:hidden;
+    font-family:'Space Mono', monospace;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+  }
+  #game{ position:absolute; inset:0; display:block; }
+
+  #hud{
+    position:absolute; top:14px; left:0; right:0;
+    display:flex; justify-content:space-between;
+    padding:0 18px;
+    color:var(--accent);
+    font-size:13px;
+    letter-spacing:2px;
+    pointer-events:none;
+    text-transform:uppercase;
+    opacity:0.9;
+    z-index:2;
+  }
+  #hud .label{ color:var(--dim); font-size:10px; display:block; margin-bottom:2px;}
+  #hud .val{ font-size:18px; color:var(--neuron); }
+  .lives{ display:flex; flex-wrap:wrap; gap:3px; justify-content:flex-end; margin-top:3px; max-width:140px; }
+  .lives .dot{ width:6px; height:6px; border-radius:50%; background:var(--on-event); box-shadow:0 0 5px rgba(60,255,110,0.7); }
+  .lives .dot.lost{ background:#232328; box-shadow:none; }
+
+  #chargeWrap{
+    position:absolute; top:46px; left:50%; transform:translateX(-50%);
+    width:min(260px, 60vw); height:6px;
+    background:#101014; border:1px solid #1c1c22; border-radius:3px;
+    overflow:hidden; z-index:2;
+  }
+  #chargeBar{ height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--on-event)); }
+  #chargeLabel{
+    position:absolute; top:34px; left:50%; transform:translateX(-50%);
+    font-size:8px; letter-spacing:2px; color:var(--dim); text-transform:uppercase;
+    z-index:2;
+  }
+
+  #hint{
+    position:absolute; bottom:14px; right:14px;
+    font-size:10px; letter-spacing:1.5px; color:var(--dim);
+    text-transform:uppercase; text-align:right;
+    z-index:2;
+    pointer-events:none;
+  }
+
+  #flash{
+    position:absolute; inset:0; background:rgba(255,59,107,0); pointer-events:none; z-index:1;
+  }
+
+  #overlay{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    color:var(--neuron);
+    background:rgba(2,2,3,0.6);
+    backdrop-filter: blur(1px);
+    padding:24px;
+    z-index:3;
+    overflow-y:auto;
+  }
+  #overlay.hidden{ display:none; }
+  #overlay h1{
+    font-size:clamp(24px,6.4vw,40px);
+    letter-spacing:5px;
+    margin:0 0 6px 0;
+    color:var(--neuron);
+    text-shadow:0 0 18px rgba(92,225,232,0.5);
+  }
+  #overlay .sub{
+    color:var(--accent);
+    font-size:clamp(11px,2.6vw,13px);
+    letter-spacing:1.5px;
+    max-width:440px;
+    margin:0 0 20px 0;
+    line-height:1.7;
+    opacity:0.9;
+  }
+  #overlay .cta{
+    font-size:clamp(12px,3vw,14px);
+    letter-spacing:1.5px;
+    color:var(--on-event);
+    border:1px solid var(--on-event);
+    padding:10px 20px;
+    border-radius:2px;
+    animation:pulse 1.6s ease-in-out infinite;
+    cursor:pointer;
+    background:none;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:0.55; }
+    50%{ opacity:1; }
+  }
+  .score-row{
+    display:flex; gap:36px; margin-bottom:22px;
+  }
+  .score-row div{ text-align:center; }
+  .score-row .n{ font-size:30px; color:var(--neuron); }
+  .score-row .l{ font-size:10px; letter-spacing:2px; color:var(--dim); text-transform:uppercase; margin-top:2px;}
+
+  .course-card{
+    margin-top:24px;
+    width:100%;
+    max-width:420px;
+    border:1px solid rgba(92,225,232,0.4);
+    border-radius:3px;
+    padding:16px 18px;
+    background:rgba(92,225,232,0.05);
+  }
+  .course-card .eyebrow{
+    font-size:9px; letter-spacing:3px; color:var(--dim);
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  .course-card h2{
+    font-size:15px; letter-spacing:0.5px; color:var(--neuron);
+    margin:0 0 8px 0; font-weight:700;
+  }
+  .course-card p{
+    font-size:12px; line-height:1.6; color:#b9c8cc;
+    margin:0 0 14px 0;
+  }
+  .course-card a{
+    display:inline-block;
+    font-size:11px; letter-spacing:1.5px;
+    color:var(--bg);
+    background:var(--accent);
+    padding:8px 16px;
+    border-radius:2px;
+    text-decoration:none;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="game"></canvas>
+<div id="flash"></div>
+
+<div id="hud">
+  <div><span class="label">Neurons linked</span><span class="val" id="scoreVal">0</span></div>
+  <div style="text-align:right;">
+    <span class="label">Integrity</span>
+    <div class="lives" id="livesDots"></div>
+  </div>
+</div>
+<div id="chargeLabel">Synapse charge</div>
+<div id="chargeWrap"><div id="chargeBar"></div></div>
+
+<div id="hint">Drag, or &larr; &rarr;, to catch</div>
+
+<div id="overlay">
+  <h1>SPIKE RUNNER</h1>
+  <p class="sub" id="introText"></p>
+  <button class="cta" id="startBtn">TAP OR PRESS SPACE TO START</button>
+</div>
+
+<script>
+/* ======================================================
+   EDIT THESE TO POINT AT YOUR COURSE
+   ====================================================== */
+const COURSE_NAME = "Neuromorphic Algorithms for Modeling Visual Perception";
+const COURSE_URL  = "#"; // <-- put your real course page URL here
+const COURSE_BLURB = "Neuromorphic sensing and computing: how event cameras and spiking neural networks let machines see and react the way brains do.";
+/* ====================================================== */
+
+const introEl = document.getElementById('introText');
+introEl.innerHTML = `The camera above is raining events. Move to catch them &mdash; catch enough and your neuron links up with another, building a network.<br>Miss too many and it all collapses. From <b>${COURSE_NAME}</b>.`;
+
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const overlay = document.getElementById('overlay');
+const startBtn = document.getElementById('startBtn');
+const scoreVal = document.getElementById('scoreVal');
+const livesDotsEl = document.getElementById('livesDots');
+const chargeBar = document.getElementById('chargeBar');
+const flashEl = document.getElementById('flash');
+
+let W, H, DPR;
+function resize(){
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = W * DPR; canvas.height = H * DPR;
+  canvas.style.width = W+'px'; canvas.style.height = H+'px';
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  if(player) player.y = H*0.86;
+}
+window.addEventListener('resize', resize);
+
+const STRIP_H = 22;
+const CHARGE_PER_NODE = 5;
+const MAX_LIVES = 20;
+
+let state = 'start'; // start | playing | collapsing | over
+let best = parseInt(localStorage.getItem('spikeRunnerBest') || '0', 10);
+
+let fallSpeed = 2.6;
+let spawnTimer = 0;
+let totalCatches = 0;
+let lives = MAX_LIVES;
+let charge = 0;
+let network = []; // {addedAt}
+let finalScore = 0;
+let collapseStart = null;
+
+let player = { x:0, y:0, r:16, vx:0 };
+let obstacles = [];
+let particles = [];
+let noiseDots = [];
+let camFlashes = [];
+
+resize();
+player.x = W/2;
+player.y = H*0.86;
+
+function updateHud(){
+  scoreVal.textContent = network.length;
+  livesDotsEl.innerHTML = '';
+  for(let i=0;i<MAX_LIVES;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i>=lives ? ' lost' : '');
+    livesDotsEl.appendChild(d);
+  }
+  chargeBar.style.width = Math.min(100, (charge/CHARGE_PER_NODE)*100) + '%';
+}
+
+function resetGame(){
+  fallSpeed = 2.6;
+  spawnTimer = 0;
+  totalCatches = 0;
+  lives = MAX_LIVES;
+  charge = 0;
+  network = [];
+  obstacles = [];
+  particles = [];
+  camFlashes = [];
+  collapseStart = null;
+  player.x = W/2;
+  player.vx = 0;
+  updateHud();
+}
+
+function spawnObstacle(){
+  const w = 22 + Math.random()*16;
+  const h = 22 + Math.random()*16;
+  const margin = 24;
+  const x = margin + Math.random()*(W - margin*2 - w);
+  const dots = [];
+  const count = 16 + Math.floor(Math.random()*14);
+  for(let i=0;i<count;i++){
+    let dx, dy;
+    do { dx = Math.random()*2-1; dy = Math.random()*2-1; } while(dx*dx+dy*dy>1);
+    dots.push({
+      dx: (dx*0.5+0.5)*w, dy: (dy*0.5+0.5)*h,
+      polarity: Math.random()<0.55 ? 'on':'off',
+      size: 1.6+Math.random()*1.8,
+      phase: Math.random()*Math.PI*2
+    });
+  }
+  obstacles.push({ x, y:-h, w, h, dots, speed: fallSpeed + Math.random()*1.2, caught:false });
+  camFlashes.push({ x: x+w/2, until: performance.now()+180 });
+}
+
+function spawnParticles(x,y,color){
+  for(let i=0;i<7;i++){
+    const a = Math.random()*Math.PI*2, sp = 1+Math.random()*2.2;
+    particles.push({ x, y, vx:Math.cos(a)*sp, vy:Math.sin(a)*sp, life:1, color });
+  }
+}
+
+function triggerMissFlash(){
+  flashEl.style.transition = 'none';
+  flashEl.style.background = 'rgba(255,59,107,0.28)';
+  requestAnimationFrame(()=>{
+    flashEl.style.transition = 'background 0.4s ease';
+    flashEl.style.background = 'rgba(255,59,107,0)';
+  });
+}
+
+function startGame(){
+  resetGame();
+  state = 'playing';
+  overlay.classList.add('hidden');
+}
+
+function beginCollapse(){
+  finalScore = network.length;
+  state = 'collapsing';
+  collapseStart = performance.now();
+  obstacles = [];
+}
+
+function endGame(){
+  state = 'over';
+  best = Math.max(best, finalScore);
+  localStorage.setItem('spikeRunnerBest', String(best));
+
+  overlay.classList.remove('hidden');
+  overlay.innerHTML = `
+    <h1>NETWORK COLLAPSED</h1>
+    <div class="score-row">
+      <div><div class="n">${finalScore}</div><div class="l">Neurons linked</div></div>
+      <div><div class="n">${best}</div><div class="l">Best</div></div>
+    </div>
+    <button class="cta" id="startBtn2">TAP OR PRESS SPACE TO RUN AGAIN</button>
+    <div class="course-card">
+      <div class="eyebrow">Want to actually understand what just happened?</div>
+      <h2>${COURSE_NAME}</h2>
+      <p>${COURSE_BLURB}</p>
+      <a href="${COURSE_URL}" target="_blank" rel="noopener">View the course &rarr;</a>
+    </div>
+  `;
+  document.getElementById('startBtn2').addEventListener('click', (e)=>{ e.stopPropagation(); startGame(); });
+}
+
+// ---------- input ----------
+function onPrimaryAction(){
+  if(state === 'start' || state === 'over') startGame();
+}
+const keys = { left:false, right:false };
+window.addEventListener('keydown', (e)=>{
+  if(e.code === 'Space'){ e.preventDefault(); onPrimaryAction(); }
+  if(e.code === 'ArrowLeft' || e.code==='KeyA') keys.left = true;
+  if(e.code === 'ArrowRight' || e.code==='KeyD') keys.right = true;
+});
+window.addEventListener('keyup', (e)=>{
+  if(e.code === 'ArrowLeft' || e.code==='KeyA') keys.left = false;
+  if(e.code === 'ArrowRight' || e.code==='KeyD') keys.right = false;
+});
+
+let dragging = false;
+canvas.addEventListener('pointerdown', (e)=>{
+  if(state !== 'playing'){ onPrimaryAction(); return; }
+  dragging = true;
+  player.x = e.clientX;
+});
+canvas.addEventListener('pointermove', (e)=>{
+  if(dragging && state==='playing') player.x = e.clientX;
+});
+window.addEventListener('pointerup', ()=>{ dragging = false; });
+startBtn.addEventListener('click', onPrimaryAction);
+
+// ---------- background noise ----------
+function updateNoise(){
+  noiseDots = [];
+  const count = 26 + Math.floor(Math.random()*18);
+  for(let i=0;i<count;i++){
+    noiseDots.push({
+      x: Math.random()*W, y: Math.random()*H,
+      polarity: Math.random()<0.5?'on':'off',
+      a: 0.08+Math.random()*0.18, size: 1+Math.random()*1.4
+    });
+  }
+}
+
+function drawEventCluster(o){
+  const now = performance.now();
+  for(const d of o.dots){
+    const px = o.x+d.dx, py = o.y+d.dy;
+    const twinkle = 0.55 + 0.45*Math.sin(now/110 + d.phase);
+    ctx.fillStyle = d.polarity==='on'
+      ? `rgba(60,255,110,${(0.55+0.4*twinkle).toFixed(2)})`
+      : `rgba(255,59,107,${(0.55+0.4*twinkle).toFixed(2)})`;
+    ctx.fillRect(px, py, d.size, d.size);
+  }
+}
+
+function drawSensorStrip(){
+  ctx.fillStyle = '#0b0b0e';
+  ctx.fillRect(0,0,W,STRIP_H);
+  ctx.strokeStyle = 'rgba(92,225,232,0.25)';
+  ctx.beginPath(); ctx.moveTo(0,STRIP_H); ctx.lineTo(W,STRIP_H); ctx.stroke();
+  ctx.strokeStyle = 'rgba(92,225,232,0.12)';
+  for(let x=0;x<W;x+=18){ ctx.beginPath(); ctx.moveTo(x,STRIP_H*0.3); ctx.lineTo(x,STRIP_H*0.7); ctx.stroke(); }
+  ctx.fillStyle = 'rgba(58,58,66,0.9)';
+  ctx.font = '9px "Space Mono", monospace';
+  ctx.fillText('EVENT CAMERA — PIXEL ARRAY', 10, STRIP_H+12);
+
+  const now = performance.now();
+  camFlashes = camFlashes.filter(f=>now<f.until);
+  for(const f of camFlashes){
+    const p = 1-(f.until-now)/180;
+    ctx.fillStyle = `rgba(60,255,110,${1-p})`;
+    ctx.fillRect(f.x-3, STRIP_H*0.15, 6, STRIP_H*0.7);
+  }
+}
+
+function drawPlayer(){
+  const px = player.x, py = player.y;
+  const bodyColor = '#EAF6FF';
+  const facing = player.vx>0.3?1:(player.vx<-0.3?-1:0);
+  const now = performance.now();
+  const blink = (Math.floor(now/2600)%7===0) && (now%2600<120);
+
+  ctx.save();
+  ctx.shadowColor = 'rgba(92,225,232,0.9)';
+  ctx.shadowBlur = 14;
+
+  const tailDir = facing!==0 ? -facing : (Math.sin(now/500)>0?1:-1)*0.3;
+  ctx.strokeStyle = bodyColor; ctx.lineWidth = 3;
+  ctx.beginPath();
+  const wag = Math.sin(now/110)*3;
+  ctx.moveTo(px+tailDir*player.r*0.7, py+player.r*0.2);
+  ctx.quadraticCurveTo(px+tailDir*player.r*1.8, py+player.r*0.2+wag, px+tailDir*player.r*2.6, py-2+wag);
+  ctx.stroke();
+  ctx.fillStyle = bodyColor;
+  ctx.beginPath(); ctx.arc(px+tailDir*player.r*2.6, py-2+wag, 1.8, 0, Math.PI*2); ctx.fill();
+
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.moveTo(px-player.r*0.5, py-player.r*0.8); ctx.lineTo(px-player.r*0.9, py-player.r*1.7);
+  ctx.moveTo(px, py-player.r*0.95); ctx.lineTo(px+2, py-player.r*1.9);
+  ctx.moveTo(px+player.r*0.5, py-player.r*0.8); ctx.lineTo(px+player.r*0.9, py-player.r*1.7);
+  ctx.stroke();
+
+  ctx.fillStyle = bodyColor;
+  ctx.beginPath(); ctx.arc(px, py, player.r, 0, Math.PI*2); ctx.fill();
+  ctx.restore();
+
+  const eyeX = px+facing*player.r*0.3, eyeY = py-player.r*0.15;
+  if(blink){
+    ctx.fillStyle = '#050506';
+    ctx.fillRect(eyeX-3.5, eyeY-0.5, 7, 1);
+  } else {
+    ctx.fillStyle = '#050506';
+    ctx.beginPath(); ctx.arc(eyeX, eyeY, 3.6, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = bodyColor;
+    ctx.beginPath(); ctx.arc(eyeX+facing*1.0, eyeY, 1.5, 0, Math.PI*2); ctx.fill();
+  }
+}
+
+function drawParticles(){
+  for(const p of particles){
+    ctx.fillStyle = p.color.replace('ALPHA', p.life.toFixed(2));
+    ctx.fillRect(p.x-1.5, p.y-1.5, 3, 3);
+  }
+}
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = '#050506';
+  ctx.fillRect(0,0,W,H);
+
+  for(const d of noiseDots){
+    ctx.fillStyle = d.polarity==='on' ? `rgba(60,255,110,${d.a})` : `rgba(255,59,107,${d.a})`;
+    ctx.fillRect(d.x, d.y, d.size, d.size);
+  }
+
+  for(const o of obstacles) drawEventCluster(o);
+  drawParticles();
+  if(state !== 'collapsing') drawPlayer();
+  drawAttachedNetwork();
+  drawSensorStrip();
+}
+
+const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5)); // ~137.5°, organic spiral packing
+
+function drawAttachedNetwork(){
+  if(network.length === 0) return;
+  const now = performance.now();
+  let collapseP = 0;
+  if(state === 'collapsing' && collapseStart!==null){
+    collapseP = Math.min(1, (now-collapseStart)/700);
+  }
+  const alpha = 1-collapseP;
+  const scale = 1-collapseP*0.6;
+  const rot = now*0.00025;
+
+  let prevX = player.x, prevY = player.y;
+  for(let i=0;i<network.length;i++){
+    const angle = i*GOLDEN_ANGLE + rot;
+    const radius = (player.r + 16 + 9*Math.sqrt(i)) * scale;
+    const nx = player.x + Math.cos(angle)*radius;
+    const ny = player.y + Math.sin(angle)*radius;
+
+    ctx.strokeStyle = `rgba(92,225,232,${0.55*alpha})`;
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(nx, ny);
+    ctx.stroke();
+
+    const age = now - network[i].addedAt;
+    const pop = Math.min(1, age/220);
+    const overshoot = age<220 ? 1 + 0.6*Math.sin(pop*Math.PI) : 1;
+    const r = (4 + pop*2.6) * scale * overshoot;
+    ctx.save();
+    ctx.shadowColor = collapseP>0 ? 'rgba(255,59,107,1)' : 'rgba(92,225,232,1)';
+    ctx.shadowBlur = 12*alpha;
+    ctx.fillStyle = collapseP>0 ? `rgba(255,59,107,${alpha})` : `rgba(234,246,255,${alpha})`;
+    ctx.beginPath();
+    ctx.arc(nx, ny, r, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+
+    prevX = nx; prevY = ny;
+  }
+}
+
+let lastT = performance.now();
+function update(dtMs){
+  for(const p of particles){ p.x+=p.vx; p.y+=p.vy; p.life-=dtMs*0.0035; }
+  particles = particles.filter(p=>p.life>0);
+
+  if(state === 'playing'){
+    const accel=0.9, friction=0.85, maxSpeed=9;
+    if(keys.left) player.vx -= accel;
+    if(keys.right) player.vx += accel;
+    if(!keys.left && !keys.right) player.vx *= friction;
+    player.vx = Math.max(-maxSpeed, Math.min(maxSpeed, player.vx));
+    if(!dragging) player.x += player.vx;
+    player.x = Math.max(player.r+6, Math.min(W-player.r-6, player.x));
+
+    fallSpeed = Math.min(9, 2.6 + totalCatches*0.15);
+    spawnTimer -= dtMs;
+    if(spawnTimer<=0){
+      spawnObstacle();
+      spawnTimer = Math.max(340, 900-totalCatches*22) + Math.random()*260;
+    }
+
+    const CATCH_R = player.r*1.15;
+    const survivors = [];
+    for(const o of obstacles){
+      o.y += o.speed;
+      const closestX = Math.max(o.x, Math.min(player.x, o.x+o.w));
+      const closestY = Math.max(o.y, Math.min(player.y, o.y+o.h));
+      const dx = player.x-closestX, dy = player.y-closestY;
+      const caught = dx*dx+dy*dy < CATCH_R*CATCH_R;
+      if(caught){
+        totalCatches++;
+        charge++;
+        const color = o.dots[0].polarity==='on' ? 'rgba(60,255,110,ALPHA)' : 'rgba(255,59,107,ALPHA)';
+        spawnParticles(player.x, player.y - player.r, color);
+        if(charge >= CHARGE_PER_NODE){
+          charge = 0;
+          network.push({ addedAt: performance.now() });
+        }
+        updateHud();
+        continue;
+      }
+      if(o.y > H+10){
+        lives--;
+        triggerMissFlash();
+        updateHud();
+        if(lives<=0){ beginCollapse(); break; }
+        continue;
+      }
+      survivors.push(o);
+    }
+    if(state === 'playing') obstacles = survivors;
+  } else if(state === 'collapsing'){
+    if(performance.now()-collapseStart > 700) endGame();
+  }
+}
+
+let noiseTimer = 0;
+function loop(t){
+  const dt = Math.min(48, t-lastT); lastT = t;
+  noiseTimer -= dt;
+  if(noiseTimer<=0){ updateNoise(); noiseTimer=70; }
+  update(dt);
+  draw();
+  requestAnimationFrame(loop);
+}
+updateHud();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

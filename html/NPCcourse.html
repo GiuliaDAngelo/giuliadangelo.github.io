@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Neuromorphic Algorithms for Modeling Visual Perception — Course</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+
+  <style>
+    /* ---- scoped to this page only, matches the card language used on the team page ---- */
+    .course-hero {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 2em auto;
+    }
+    .course-hero h2 { margin-bottom: 0.3em; }
+    .course-hero p.tagline {
+      color: #6b6b6b;
+      font-size: 1.05em;
+      line-height: 1.6;
+    }
+
+    .game-card {
+      max-width: 900px;
+      margin: 0 auto 3em auto;
+      padding: 1.2em;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+    .game-card .game-frame-wrap {
+      position: relative;
+      width: 100%;
+      /* keep the game roughly full-height on phones, capped on desktop */
+      height: 80vh;
+      max-height: 760px;
+      min-height: 420px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .game-card iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .game-card .game-caption {
+      text-align: center;
+      color: #999;
+      font-size: 0.85em;
+      margin-top: 0.8em;
+    }
+
+    .course-section {
+      max-width: 760px;
+      margin: 0 auto 2.2em auto;
+    }
+    .course-section h3 {
+      margin-bottom: 0.4em;
+    }
+    .course-section p, .course-section li {
+      color: #555;
+      line-height: 1.7;
+    }
+    .course-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: center;
+      margin: 1.5em auto 2.5em auto;
+      max-width: 760px;
+      text-align: center;
+    }
+    .course-meta-row .meta-item {
+      min-width: 130px;
+    }
+    .course-meta-row .meta-item strong {
+      display: block;
+      font-size: 0.75em;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 0.3em;
+    }
+  </style>
+</head>
+<body class="no-sidebar is-preload">
+  <div id="page-wrapper">
+
+    <!-- Nav — identical to the rest of the site -->
+    <nav id="nav">
+      <ul>
+        <li><a href="../index.html#header">Who I am</a>
+          <ul>
+            <li><a href="../index.html#features">Biography</a></li>
+            <li><a href="../index.html#cv">Curriculum Vitae</a></li>
+          </ul>
+        </li>
+        <li><a href="npclab.html">NPC Lab</a></li>
+        <li><a href="grantsawards.html">Grants, News & Awards</a></li>
+        <li><a href="podcasts.html">My Scientific Podcasts</a></li>
+        <li><a href="contactme.html">Contact me!</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+      <div class="container">
+
+        <div class="course-hero">
+          <!-- EDIT ME: course title -->
+          <h2>Neuromorphic Algorithms for Modeling Visual Perception</h2>
+          <!-- EDIT ME: one-line tagline -->
+          <p class="tagline">
+            How machines can see and react the way brains do — neuromorphic sensing,
+            event-based vision, and spiking neural networks, from theory to hands-on robotics.
+          </p>
+        </div>
+
+        <!-- EDIT ME: quick facts, or delete this row if not needed -->
+        <div class="course-meta-row">
+          <div class="meta-item"><strong>Semester</strong>Spring 2027</div>
+          <div class="meta-item"><strong>Credits</strong>TBD</div>
+          <div class="meta-item"><strong>Format</strong>Lectures + labs</div>
+          <div class="meta-item"><strong>Level</strong>MSc / advanced BSc</div>
+        </div>
+
+        <!-- Playable game -->
+        <div class="game-card">
+          <div class="game-frame-wrap">
+            <iframe src="spike-runner.html" title="Spike Runner game" loading="lazy"></iframe>
+          </div>
+          <p class="game-caption">
+            You just played a (very simplified) event camera and spiking neuron. Read on to see how the real thing works.
+          </p>
+        </div>
+
+        <div class="course-section">
+          <h3>Overview</h3>
+          <!-- EDIT ME -->
+          <p>
+            This course introduces neuromorphic sensing and computing: event-based cameras that report
+            per-pixel brightness changes instead of full frames, and spiking neural networks that process
+            that information the way biological neurons do. Students will learn the theory behind both and
+            build small working systems on real neuromorphic hardware.
+          </p>
+        </div>
+
+        <div class="course-section">
+          <h3>What you'll cover</h3>
+          <!-- EDIT ME -->
+          <ul>
+            <li>How event cameras work, and why they differ fundamentally from frame-based cameras</li>
+            <li>Spiking neuron models: leaky integrate-and-fire, refractory periods, membrane dynamics</li>
+            <li>Training and deploying spiking neural networks</li>
+            <li>Neuromorphic hardware platforms (e.g. SpiNNaker)</li>
+            <li>Applications in robotics: fast, low-power, event-driven perception</li>
+          </ul>
+        </div>
+
+        <div class="course-section">
+          <h3>Prerequisites</h3>
+          <!-- EDIT ME -->
+          <p>
+            Basic programming (Python), and familiarity with linear algebra and signals. No prior neuroscience
+            background required.
+          </p>
+        </div>
+
+        <div class="course-section">
+          <h3>Interested?</h3>
+          <!-- EDIT ME -->
+          <p>
+            Get in touch via the <a href="contactme.html">contact page</a>, or reach out directly to discuss
+            enrollment, prerequisites, or project ideas.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer — identical to the rest of the site -->
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <section class="contact">
+              <header>
+                <h3>Giulia D'Angelo</h3>
+                <h4>giulia.dangelo@fel.cvut.cz</h4>
+              </header>
+              <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/giuliadangelo/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">Linkedin</span></a></li>
+                <li><a href="https://github.com/GiuliaDAngelo" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                <li><a href="https://www.youtube.com/@gvmdangelo" class="icon brands fa-youtube" target="_blank"><span class="label">YouTube</span></a></li>
+                <li><a href="https://scholar.google.it/citations?hl=it&user=76sPLvEAAAAJ" class="icon solid fa-graduation-cap" target="_blank"><span class="label">Google Scholar</span></a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts — identical to the rest of the site -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.dropotron.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+</html>
