@@ -20,6 +20,13 @@
       font-size: 1.05em;
       line-height: 1.6;
     }
+    .course-hero p.course-code {
+      color: #aaa;
+      font-size: 0.8em;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.4em;
+    }
 
     .game-card {
       max-width: 900px;
@@ -65,6 +72,15 @@
     .course-section p, .course-section li {
       color: #555;
       line-height: 1.7;
+    }
+    .course-section ol.syllabus li {
+      margin-bottom: 0.7em;
+    }
+    .course-section ol.syllabus li strong {
+      color: #333;
+    }
+    .course-section ul.literature li {
+      margin-bottom: 0.5em;
     }
     .course-meta-row {
       display: flex;
@@ -112,21 +128,21 @@
       <div class="container">
 
         <div class="course-hero">
-          <!-- EDIT ME: course title -->
+          <p class="course-code">BE4M33NEA &middot; CTU FEE &middot; Department of Cybernetics</p>
           <h2>Neuromorphic Algorithms for Modeling Visual Perception</h2>
-          <!-- EDIT ME: one-line tagline -->
           <p class="tagline">
-            How machines can see and react the way brains do — neuromorphic sensing,
-            event-based vision, and spiking neural networks, from theory to hands-on robotics.
+            How machines can see and react the way brains do; neuromorphic sensing
+            (event-based vision), and spiking neural networks, from biology to real-world robotics.
           </p>
         </div>
 
-        <!-- EDIT ME: quick facts, or delete this row if not needed -->
         <div class="course-meta-row">
-          <div class="meta-item"><strong>Semester</strong>Spring 2027</div>
-          <div class="meta-item"><strong>Credits</strong>TBD</div>
-          <div class="meta-item"><strong>Format</strong>Lectures + labs</div>
-          <div class="meta-item"><strong>Level</strong>MSc / advanced BSc</div>
+          <div class="meta-item"><strong>Semester</strong>Summer (Spring 2027)</div>
+          <div class="meta-item"><strong>Credits</strong>6 ECTS</div>
+          <div class="meta-item"><strong>Format</strong>2h lecture + 2h lab / week</div>
+          <div class="meta-item"><strong>Assessment</strong>Graded assessment</div>
+          <div class="meta-item"><strong>Language</strong>English</div>
+          <div class="meta-item"><strong>Level</strong>MSc, Open Informatics</div>
         </div>
 
         <!-- Playable game -->
@@ -135,48 +151,93 @@
             <iframe src="spike-runner.html" title="Spike Runner game" loading="lazy"></iframe>
           </div>
           <p class="game-caption">
-            You just played a (very simplified) event camera and spiking neuron. Read on to see how the real thing works.
+            You just played a (very abstracted) event camera output and spiking neuron. Read on to see how the real thing works.
           </p>
         </div>
 
         <div class="course-section">
           <h3>Overview</h3>
-          <!-- EDIT ME -->
           <p>
-            This course introduces neuromorphic sensing and computing: event-based cameras that report
-            per-pixel brightness changes instead of full frames, and spiking neural networks that process
-            that information the way biological neurons do. Students will learn the theory behind both and
-            build small working systems on real neuromorphic hardware.
+            Motivated by the development of efficient, brain-inspired perception and control systems, this course
+            introduces neuromorphic sensing and neuromorphic computing for robotics and computer vision. The emphasis
+            is on event-based vision and spiking neural networks (SNNs) for vision-based tasks, and on how they differ
+            from classical artificial neural networks. The final part of the course gives an overview of SNNs: their key
+            computational principles, possible implementations, and applications.
+          </p>
+          <p>
+            You will gain a general overview of event-based sensing and neuromorphic computing: core components,
+            processing approaches, and learning rules; together with insight into real-world robotic applications,
+            including the neuromorphic iCub and developments from companies such as IBM, BrainChip, SynSense, Innatera, iNivation, Neuronova,
+            Neuomorphic Intel, etc. Comparisons with standard frame-based approaches are drawn where useful, but the course is not meant
+            as a full introduction to conventional methods.
           </p>
         </div>
 
         <div class="course-section">
-          <h3>What you'll cover</h3>
-          <!-- EDIT ME -->
+          <h3>Lectures</h3>
+          <ol class="syllabus">
+            <li><strong>Neuromorphic sensing and computing</strong> — the work of Carver Mead, Misha Mahowald and Rodney
+              Douglas at Caltech, and the path to Infineon, iniVation and Prophesee; motivation, history, and relevance.</li>
+            <li><strong>Neuromorphic sensing: the retina</strong> — contrast sensitivity, the Weber–Fechner law, Mach bands,
+              lateral inhibition, gain modulation mechanisms.</li>
+            <li><strong>Neuromorphic sensing: the human visual system</strong> — retinotopic mapping, retino-cortical
+              processing, cortical magnification, cortical processing (LGN, V1, V2).</li>
+            <li><strong>Event-based cameras: visual odometry</strong> — motion estimation, contrast maximisation, SLAM;
+              comparison with classical approaches.</li>
+            <li><strong>Event-based cameras: navigation and motion detection</strong> — Reichardt detectors and sEMD.</li>
+            <li><strong>Event-based cameras: stereopsis and depth perception</strong> — Osswald, Marr, Poggio, Mahowald.</li>
+            <li><strong>Event-driven sensing beyond vision</strong> — touch, the event-based cochlea, olfactory circuits and
+              their applications.</li>
+            <li><strong>Spiking neural networks</strong> — overview and comparison with classical ANNs, analog vs digital,
+              spike detection and analysis (mean firing rate, inter-spike interval), temporal coding, and learning rules.</li>
+          </ol>
+        </div>
+
+        <div class="course-section">
+          <h3>Labs</h3>
+          <p>
+            Lab material lives in the
+            <a href="https://github.com/GiuliaDAngelo/CTU-EDNeuromorphic" target="_blank">CTU-EDNeuromorphic GitHub repository</a>.
+          </p>
           <ul>
-            <li>How event cameras work, and why they differ fundamentally from frame-based cameras</li>
-            <li>Spiking neuron models: leaky integrate-and-fire, refractory periods, membrane dynamics</li>
-            <li>Training and deploying spiking neural networks</li>
-            <li>Neuromorphic hardware platforms (e.g. SpiNNaker)</li>
-            <li>Applications in robotics: fast, low-power, event-driven perception</li>
+            <li>Event-based visualisation and event representation methods</li>
+            <li>Event-based Object Motion Sensitivity (OMS) and visual attention</li>
+            <li>Journal club — recent literature and open problems</li>
+            <li>Project brainstorming based on the lectures and journal club (a list of possible projects is provided)</li>
+            <li>Final session: project and demo presentations to the class</li>
           </ul>
         </div>
 
         <div class="course-section">
-          <h3>Prerequisites</h3>
-          <!-- EDIT ME -->
+          <h3>Who it's for</h3>
           <p>
-            Basic programming (Python), and familiarity with linear algebra and signals. No prior neuroscience
-            background required.
+            A compulsory elective in the <strong>Computer Vision</strong> specialisation of the Open Informatics
+            master's programme (recommended in the 2nd semester), and open to other students as an elective.
+            The class is kept small — ideally 15 to 25 participants.
+          </p>
+          <p>
+            Basic programming (Python) and familiarity with linear algebra and signals are helpful. No prior
+            neuroscience background is required.
           </p>
         </div>
 
         <div class="course-section">
+          <h3>Reading</h3>
+          <ul class="literature">
+            <li>Introductory material summary: <a href="https://github.com/GiuliaDAngelo/CTU-EDNeuromorphic" target="_blank">CTU-EDNeuromorphic</a></li>
+            <li>Mead, C. "Neuromorphic electronic systems." <em>Proceedings of the IEEE</em> 78.10 (1990): 1629–1636.</li>
+            <li>Indiveri, G., and Douglas, R. "Neuromorphic vision sensors." <em>Science</em> 288.5469 (2000): 1189–1190.</li>
+            <li>Bartolozzi, C., Indiveri, G., and Donati, E. "Embodied neuromorphic intelligence." <em>Nature Communications</em> 13.1 (2022): 1024.</li>
+            <li>Gallego, G., et al. "Event-based vision: A survey." <em>IEEE TPAMI</em> 44.1 (2020): 154–180.</li>
+            <li>D'Angelo, G., et al. "Event driven bio-inspired attentive system for the iCub humanoid robot on SpiNNaker." <em>Neuromorphic Computing and Engineering</em> 2.2 (2022): 024008.</li>
+          </ul>
+        </div>
+
+        <div class="course-section">
           <h3>Interested?</h3>
-          <!-- EDIT ME -->
           <p>
-            Get in touch via the <a href="contactme.html">contact page</a>, or reach out directly to discuss
-            enrollment, prerequisites, or project ideas.
+            Enrol through the CTU study system under course code <strong>BE4M33NEA</strong>. For questions about the
+            course, prerequisites, or project ideas, get in touch via the <a href="contactme.html">contact page</a>.
           </p>
         </div>
 
