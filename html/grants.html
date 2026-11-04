@@ -1,412 +1,424 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
+  <title>Grants, News & Awards</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>Grants \- ENDEAVOR</title>
   <link rel="stylesheet" href="../assets/css/main.css" />
   <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 
   <style>
-    /* Basic tweaks */
-    p { margin-top: 0; }
-
-    /* Make container full width so cards can occupy ~50% viewport */
-    .grants-container { max-width: 100%; margin: 0 auto; padding: 0 1rem; box-sizing: border-box; }
-
-    /* Grid: 1 column by default, 2 equal columns from 700px up */
-    .grant-grid-section { padding: 1.25rem 0; }
-    .grant-grid {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: 1fr;
-      align-items: start;
-    }
-    @media (min-width: 700px) {
-      .grant-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)); /* two equal columns ~50% each */
-      }
-    }
-
-    /* Card styling - CHANGED: overflow visible to allow tooltip */
-    .grant-card {
-      box-sizing: border-box;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 1rem;
-      overflow: visible; /* Allow tooltips to overflow */
-      position: relative;
-      transition: transform 220ms ease, box-shadow 220ms ease;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      height: auto;
-    }
-
-    .grant-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-      z-index: 2;
-    }
-
-    .grant-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-      border-radius: 10px 10px 0 0;
-    }
-
-    .grant-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    /* Header stacked so image spans almost full width */
-    .grant-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      align-items: flex-start;
-    }
-
-    /* Image fills card width, shown entirely */
-    .grant-header img {
+    .image-wrapper {
+      display: inline-block;
       width: 100%;
       height: auto;
-      max-height: none;
-      object-fit: contain;
-      border-radius: 8px;
-      background: #f7f7f7;
-      flex-shrink: 0;
-      display: block;
-      transition: transform 0.3s ease;
+      text-decoration: none;
+      overflow: visible;
     }
 
-    .grant-card:hover .grant-header img {
+
+    .image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+      transform-origin: center center;
+      border-radius: 12px;
+    }
+    .image-wrapper img:hover {
       transform: scale(1.05);
     }
 
-    /* Small-logo layout: apply class `has-small-logo` on .grant-header when you want row layout */
-    .grant-header.has-small-logo {
-      flex-direction: row;
-      align-items: center;
-    }
-    .grant-header.has-small-logo img {
-      width: 64px;
-      height: 64px;
-      max-height: none;
-      object-fit: contain;
-      border-radius: 6px;
-    }
-
-    .grant-title { font-weight: 700; margin: 0; font-size: 1rem; line-height: 1.1; }
-    .grant-sub { margin: 0; color: #666; font-size: 0.875rem; }
-
-    /* NEW: Tooltip styling (inspired by speakers page) */
-    .grant-details {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(102, 126, 234, 0.2);
-      border-radius: 15px;
-      padding: 1.5rem;
-      width: 450px;
-      max-width: 90vw;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      z-index: 1000;
-      max-height: 400px;
-      overflow-y: auto;
-      color: #333;
-      font-size: 0.9rem;
+    .image-frame {
+      text-align: center;
+      padding: 1em;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0.5em;
+      border-radius: 12px;
     }
 
-    /* Arrow pointing down (for tooltips above card) */
-    .grant-details::before {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 10px solid rgba(255, 255, 255, 0.98);
+
+
+    .image-frame img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
     }
 
-    .grant-card:hover .grant-details {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(-10px);
-      pointer-events: auto;
+    .image-frame img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .grant-details:hover {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
+    .image-frame .fa-youtube {
+      margin: 0.5em;
+      font-size: 2em;
+      color: #FF0000;
+      transition: transform 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
+      border: none;
+      outline: none;
     }
 
-    .grant-details h4 {
-      color: #2c3e50;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid #667eea;
-      padding-bottom: 0.3rem;
+    .image-frame .fa-youtube:hover,
+    .image-frame .fa-youtube:focus {
+      transform: scale(1.2);
+      outline: none;
+      border: none;
+      box-shadow: none;
     }
 
-    .grant-details p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
+    .image-frame .fa-spotify {
+      margin: 0.5em;
+      font-size: 2em;
+      color: #1DB954;
+      transition: transform 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
+      border: none;
+      outline: none;
     }
 
-    .grant-details ul {
-      margin: 0.5rem 0 1rem 1rem;
-      padding-left: 1rem;
+    .image-frame .fa-spotify:hover,
+    .image-frame .fa-spotify:focus {
+      transform: scale(1.2);
+      outline: none;
+      border: none;
+      box-shadow: none;
+    }
+    .image-frame .fa-link {
+      margin: 0.5em;
+      font-size: 2em;
+      color: gray;
+      transition: transform 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
+      border: none;
+      outline: none;
     }
 
-    .grant-details li {
-      margin-bottom: 0.5rem;
-      line-height: 1.5;
+    .image-frame .fa-link:hover,
+    .image-frame .fa-link:focus {
+      transform: scale(1.2);
+      outline: none;
+      border: none;
+      box-shadow: none;
     }
 
-    /* Hover hint */
-    .hover-hint {
-      position: absolute;
-      bottom: 10px;
-      right: 15px;
-      background: rgba(102, 126, 234, 0.1);
-      color: #667eea;
-      padding: 0.3rem 0.6rem;
-      border-radius: 15px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
-    }
-
-    .grant-card:hover .hover-hint {
-      opacity: 0;
-    }
-
-    /* Bottom row adjustments */
-    .grant-card.bottom-row .grant-details {
-      top: auto;
-      bottom: -20px;
-    }
-
-    .grant-card.bottom-row .grant-details::before {
-      top: -10px;
-      bottom: auto;
-      border-top: none;
-      border-bottom: 10px solid rgba(255, 255, 255, 0.98);
-    }
-
-    .grant-card.bottom-row:hover .grant-details {
-      transform: translateX(-50%) translateY(10px);
-    }
-
-    /* Small screens: adjust tooltip positioning */
-    @media (max-width: 768px) {
-      .grant-details {
-        width: 320px;
-        padding: 1rem;
-        font-size: 0.85rem;
-      }
-
-      .grant-card:hover {
-        transform: translateY(-4px) scale(1.01);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .grant-details {
-        width: 280px;
-        left: 10px;
-        transform: none;
-      }
-
-      .grant-details::before {
-        left: 50%;
-      }
-
-      .grant-card:hover {
-        transform: none;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      }
-
-      .grant-header.has-small-logo {
-        flex-direction: column;
-      }
-
-      .grant-header.has-small-logo img {
-        width: 100%;
-        max-height: 180px;
-        border-radius: 6px;
-      }
-    }
   </style>
 </head>
-
 <body class="no-sidebar is-preload">
   <div id="page-wrapper">
+
     <!-- Nav -->
     <nav id="nav">
       <ul>
-        <li><a href="../index.html#header">Who I am</a>
-          <ul>
-            <li><a href="../index.html#features">Biography</a></li>
-            <li><a href="../index.html#cv">Curriculum Vitae</a></li>
-          </ul>
+ 		<li><a href="../index.html#header">Who I am</a>
+		  <ul>
+			  <li><a href="../index.html#features">Biography</a></li>
+			  <li><a href="../index.html#cv">Curriculum Vitae</a></li>
+		  </ul>
+		  </li>
+        <li><a href="npclab.html">NPC Lab</a>
         </li>
-        <li><a href="npclab.html">NPC Lab</a></li>
         <li><a href="grantsawards.html">Grants, News & Awards</a></li>
         <li><a href="podcasts.html">My Scientific Podcasts</a></li>
         <li><a href="contactme.html">Contact me!</a></li>
       </ul>
     </nav>
-
     <!-- Main -->
     <div class="wrapper style1">
       <div class="container">
         <div class="row">
-          <div class="grants-container">
-            <section class="grant-grid-section">
-              <div class="grant-grid">
-
-                <!-- READ THE ROOM -->
-              <article class="grant-card" tabindex="0" role="button" aria-expanded="false" aria-labelledby="grant-readtheroom-title">
-                <div class="grant-header">
-                  <img src="../images/CVUTGrant.png" alt="Read the Room logo" />
-                  <div>
-                    <h4 id="grant-readtheroom-title" class="grant-title"> (2027–2028) Read the Room — Neuromorphic Perception and Embodied Reasoning for Low-Latency Social Robotics</h4>
-                    <p class="grant-sub">CTU Interdisciplinary Near Future Challenge (INFC), with Karla Štěpánová (CIIRC)</p>
-                  </div>
-                </div>
-
-                <div class="grant-details">
-                  <p><strong>Overview:</strong> Read the Room gives robots a sense of social awareness by combining ultra-fast, energy-efficient neuromorphic sensing with AI that interprets human gestures, speech, and social context. Event-based sensors capture subtle movements and rapid gestures that conventional cameras may miss, while multimodal reasoning helps a humanoid robot decide whether, when, and how to join a group of people. The project builds a dataset of human group interactions and demonstrates the approach on a humanoid robot.</p>
-
-                  <p><strong>Work Packages:</strong></p>
-                  <ul>
-                    <li><strong>WP1 – Event-based Sensing:</strong> Extend neuromorphic attention and gesture recognition from a single hand to several people at once, extracting social motion signatures at millisecond latency and milliwatt power.</li>
-                    <li><strong>WP2 – Multimodal Fusion:</strong> Fuse the event stream with RGB, gesture, and speech in an embodied reasoning architecture that infers whether a group is open to a newcomer.</li>
-                    <li><strong>WP3 – Dataset, Closed-loop Integration and Demonstration:</strong> Record an open event-based dataset of group interactions, deploy the full pipeline on a humanoid robot, and present a public demonstration.</li>
-                  </ul>
-
-                  <p><strong>Technologies:</strong> DAVIS event-based cameras, SpiNNaker and Speck neuromorphic hardware, Unitree humanoid robots, Vicon and HTC Vive motion tracking, RealSense RGB-D cameras, spiking neural networks, multimodal AI.</p>
-
-                  <p><strong>Impact:</strong> Read the Room advances low-latency, energy-efficient perception for socially aware robots, a step toward more responsive and considerate assistive and service robots. It delivers open datasets, a public demonstration, and the foundation of a new interdisciplinary centre at CTU for neuro-inspired, efficient, embodied robotics.</p>
-                </div>
-                <div class="hover-hint">Hover for details</div>
-              </article>
-
-                <!-- EURONMC -->
-                <article class="grant-card" tabindex="0" role="button" aria-expanded="false" aria-labelledby="grant-euronmc-title">
-                  <div class="grant-header">
-                    <img src="../images/COST.png" alt="EuroNMC logo" />
-                    <div>
-                      <h4 id="grant-euronmc-title" class="grant-title"> (2026–2030) EuroNMC — European Network for NeuroMorphic Computing</h4>
-                      <p class="grant-sub">COST Action CA25118 - Giulia D'Angelo: Vice-Chair</p>
-                    </div>
-                  </div>
-
-                  <div class="grant-details">
-                    <p><strong>Overview:</strong> EuroNMC is a pan-European research network dedicated to neuromorphic computing, an alternative computing paradigm inspired by the brain's parallel, sparse, and event-driven information processing. Approved by COST in May 2026 and coordinated by Forschungszentrum Jülich, the network brings together 139 researchers from 80 institutions across 24 countries, spanning materials science, device engineering, high-performance computing, brain-inspired AI, and neuroscience. Its goal is to bridge Europe's fragmented neuromorphic landscape by connecting bio-inspired models with hardware, software, and industrial applications.</p>
-
-                    <p><strong>Work Groups:</strong></p>
-                    <ul>
-                      <li><strong>WG1 – Foundations & Theoretical Models:</strong> Establish the conceptual and theoretical groundwork linking biological computation principles to neuromorphic systems.</li>
-                      <li><strong>WG2 – Neuromorphic Devices & Circuits:</strong> Advance novel memory devices, chip design, and hardware architectures for energy-efficient, event-driven computing.</li>
-                      <li><strong>WG3 – Neuromorphic Architectures & Brain-Inspired Algorithms:</strong> Develop architectures and algorithms that translate biological computation into scalable, hardware-ready systems.</li>
-                      <li><strong>WG4 – Applications & Use Cases:</strong> Identify and demonstrate real-world applications across AI, robotics, and energy-efficient edge computing.</li>
-                      <li><strong>WG5 – Training, Education & Resource Pooling:</strong> Coordinate training schools, gatherings, and shared resources to build cross-disciplinary expertise.</li>
-                      <li><strong>WG6 – Dissemination & Outreach:</strong> Communicate the network's progress and results to the scientific community, industry, and the wider public.</li>
-                    </ul>
-
-                    <p><strong>Scope:</strong> Neuromorphic computing and engineering, novel computing architectures, novel electronic devices, brain-inspired computing and architectures — covering the full value chain from biologically inspired models to hardware, software, and industrial use.</p>
-
-                    <p><strong>Impact:</strong> EuroNMC strengthens coordination across a previously fragmented European research landscape, fostering interdisciplinary exchange and training to accelerate the development of low-power, brain-inspired computing technologies. By connecting academia, industry, and policy stakeholders across 24 countries, the network positions Europe as a leading contributor to sustainable, energy-efficient AI and computing.</p>
-                  </div>
-                  <div class="hover-hint">Hover for details</div>
-                </article>
-
-                <!-- PIONEER -->
-                <article class="grant-card" tabindex="0" role="button" aria-expanded="false" aria-labelledby="grant-pioneer-title">
-                  <div class="grant-header">
-                    <img src="../images/GACR.png" alt="PIONEER logo" />
-                    <div>
-                      <h4 id="grant-pioneer-title" class="grant-title"> (2026–2028) PIONEER — Neuromorphic Active Vision for Embodied Object Perception</h4>
-                      <p class="grant-sub">GACR Standard Projects / CTU </p>
-                    </div>
-                  </div>
-
-                  <div class="grant-details">
-                    <p><strong>Overview:</strong> PIONEER seeks to decode biological active sensing principles, leveraging low-power and low-latency neuromorphic sensing and computing to develop an intelligent system that optimizes visual information processing. The project develops a fully neuromorphic end-to-end active vision architecture, assesses biological realism in neuromorphic vision, and integrates active embodied object perception in humanoid robotics using the iCub platform.</p>
-
-                    <p><strong>Work Packages:</strong></p>
-                    <ul>
-                      <li><strong>WP1 – Neuromorphic Track:</strong> Develop integrated fully neuromorphic end-to-end active vision architecture with log-polar retina, V1 edge extraction, and OMS cells for motion detection using Speck neuromorphic hardware.</li>
-                      <li><strong>WP2 – Biologically Plausible Track:</strong> Explore benefits of incorporating greater biological realism by replacing cortical stages with biologically detailed recurrent SNN models of primate V1 and V2, determining optimal abstraction level for robotics.</li>
-                      <li><strong>WP3 – Active Vision for Object Perception:</strong> Integrate Sensorimotor Contingency Theory (SMCT) rules for embodied object perception through saccadic and wrist movements, enabling object discrimination and motion prediction on iCub robot.</li>
-                    </ul>
-
-                    <p><strong>Technologies:</strong> Speck neuromorphic platform with DYNAP-CNN chip, DAVIS346 COLOR event-driven cameras, iCub humanoid robot with 3D-printed camera mounts, pan-and-tilt unit (PTU), spiking neural networks, YCB object dataset.</p>
-
-                    <p><strong>Impact:</strong> PIONEER advances low-latency, energy-efficient processing by implementing a fully active neuromorphic system for object perception. The project bridges neuroscience, robotics, and AI, supporting EU Sustainable Development Goals by developing low-power intelligent systems. It establishes new benchmarks for neuromorphic robotic vision and offers alternatives to conventional feedforward computer vision approaches that rely on large datasets.</p>
-                  </div>
-                  <div class="hover-hint">Hover for details</div>
-                </article>
 
 
-				<!-- ENDEAVOR -->
-                <article class="grant-card" tabindex="0" role="button" aria-expanded="false" aria-labelledby="grant-endeavor-title">
-                  <div class="grant-header">
-                    <img src="../images/endeavor.png" alt="ENDEAVOR logo" />
-                    <div>
-                      <h4 id="grant-endeavor-title" class="grant-title">(2024–2026) ENDEAVOR — Event-Driven Active Vision for Object Perception</h4>
-                      <p class="grant-sub">Marie Skłodowska-Curie Action / CTU </p>
-                    </div>
-                  </div>
+			<article class="col-6 col-12-mobile special">
+			  <div class="image-frame">
+				<img src="../images/CVUTgrant.png" alt="cvutgrant" />
+				<p>
+				  <strong>ČVUT INTERDISCIPLINARY NEAR FUTURE CHALLENGE Grant (2027) </strong><br />
+				   Read The Room: Neuromorphic perception and embodied reasoning for low-latency social robotics <a href="https://www.cvut.cz/en/cvut-infc-grant" target="_blank" class="icon solid fa-link" title="Link" style="font-size:0.8em;"></a><br />
+				</p>
 
-                  <div class="grant-details">
-                    <p><strong>Overview:</strong> ENDEAVOR is a cutting-edge project that enhances robotic vision using event-driven cameras, spiking neural networks, and infant-inspired active exploration mechanisms. Unlike traditional vision systems that rely on static frames, ENDEAVOR enables robots like iCub to move, observe, and interact with objects in a bioinspired and energy-efficient manner.</p>
+			  </div>
+			</article>
 
-                    <p><strong>Objectives:</strong></p>
-                    <ul>
-                      <li><strong>O1 – EDAV Model:</strong> Adapt a frame-based vision model to event-driven input using iCub's head and wrist movements.</li>
-                      <li><strong>O2 – SNN EDAV:</strong> Implement a spiking neural network version using neuromorphic hardware for real-time, low-power operation.</li>
-                      <li><strong>O3 – Benchmarking:</strong> Compare models based on accuracy, latency, and energy use on the YCB object dataset.</li>
-                    </ul>
+			<article class="col-6 col-12-mobile special">
+			  <div class="image-frame">
+				<img src="../images/COST.png" alt="EuroNMC" />
+				<p>
+				  <strong>COST Action CA25118 Approved: EuroNMC — European Network for NeuroMorphic Computing (2026- 2030)</strong><br />
+				   Approved on 19 May 2026, launching a pan-European network of 139 researchers from 80 institutions across 24 countries dedicated to neuromorphic computing.
+				   Giulia D'Angelo serves as Vice-Chair of the Action, coordinating across its six work groups. <br/>
+					 Link to the Action: <a href="https://lnkd.in/p/dHtjagSi" target="_blank" class="icon solid fa-link" title="Read more about EuroNMC" style="font-size:0.8em;"></a><br />
+				</p>
 
-                    <p><strong>Technologies:</strong> DAVIS346 event-driven cameras, Speck neuromorphic chip with sCNN support, iCub humanoid robot with 3D-printed mounts, Sensorimotor Contingency Theory (SMCT) for perception-action coupling.</p>
-
-                    <p><strong>Impact:</strong> ENDEAVOR bridges neuroscience, robotics, and AI to push forward energy-efficient perception in robotics. The project supports the EU's Sustainable Development Goals by advancing low-power intelligent systems, and aims to establish benchmarks for neuromorphic robotic vision.</p>
-                  </div>
-                  <div class="hover-hint">Hover for details</div>
-                </article>
+			  </div>
+			</article>
 
 
-                <!-- Add more .grant-card blocks as needed -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/OlhaDean.jpg" alt="OlhaDean" />
+			<p>
+			  <strong>Dean’s Award;  Faculty of Information Technology CTU in Prague (2026) </strong><br />
+			  	Awarding the best Bachelor and Master Theses of the semester.
+				Olha Vedmedenko (NPC Lab); Bachelor Thesis: "Neuromorphic active object recognition” <br/>
+				  Link to the Award: <a href="https://fit.cvut.cz/en/studies/study-guide/bachelor-and-master-study-program/deans-award" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size:0.8em;"></a><br />
+			</p>
 
-              </div>
-            </section>
-          </div>
+		  </div>
+		</article>
+
+
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/loreal.png" alt="loreal" />
+			<p>
+			  <strong>Honorable Mention - For Women in Science (2026)</strong><br />
+			  	FONDATION L'ORÉAL - unesco <br/>
+				  Link <a href="https://www.forwomeninscience.com/challenge/show/148" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size:0.8em;"></a><br />
+			</p>
+
+		  </div>
+		</article>
+
+
+		<!-- 2026 NEWS -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/rai2.png" alt="rai" />
+			<p>
+			  <strong>Quasar - Rai2 (2026)</strong><br />
+			  	Italian national TV - Scienza e attualita' (Science and News) <br/>
+				  Link to Quasar <a href="https://www.raiplay.it/programmi/quasar" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size:0.8em;"></a><br />
+				  Link to the episode <a href="https://www.raiplay.it/video/2026/05/Quasar---Puntata-del-09052026-7edc8287-518b-469d-ae47-404eb117fa16.html" target="_blank" class="icon solid fa-link" title="PR" style="font-size:0.8em;"></a>
+			</p>
+
+		  </div>
+		</article>
+
+		<!-- 2026 NEWS -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/NMI.png" alt="nmi" />
+			<p>
+			  <strong>Nature Machine Intelligence 2026</strong><br />
+			  	A benchmarking framework for embodied neuromorphic agents <br/>
+				  Link to the manuscript webpage <a href="nmi.html" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size:0.8em;"></a><br />
+				  Link to the publication <a href="https://www.nature.com/articles/s42256-026-01197-w" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size:0.8em;"></a><br />
+				  CTU FEL Press Release <a href="https://fel.cvut.cz/cs/aktualne/novinky/83822-jak-merit-inteligenci-robotu-inspirovanych-prirodou-studie-s-prvni-autorkou-z-fel-cvut-navrhuje-novy-zpusob-hodnoceni-robotickych-systemu" target="_blank" class="icon solid fa-link" title="PR" style="font-size:0.8em;"></a>
+			</p>
+
+		  </div>
+		</article>
+
+
+		<!-- 2026 NEWS -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/podcast.jpeg" alt="podcast" />
+			<p>
+			  <strong>Podcast Interview: NoiDCoffeTime 2026</strong><br />
+			  	NoiD Telecom — Stefania Lofiego <em>with Gianna Martinengo</em>.
+				<a href="https://docs.google.com/forms/d/e/1FAIpQLSfIxuvS_XZQC_JxrU7BLO__RaLGwbvtkYZBp5QEjrAhtxG8RA/viewform" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size: 0.8em;"></a>
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2025 GACR -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/GACR.png" alt="GACR" />
+			<p>
+			  <strong>(2026-2028) GAČR (Czech Science Foundation) Standard Projects</strong><br />
+			  	Grant: PIONEER — <em>Neuromorphic Active Vision for Embodied Object Perception</em>.
+				<a href="grants.html" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size: 0.8em;"></a>
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2026 Ray -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/RayROBOPROX.jpeg" alt="RayRoboprox" />
+			<p>
+			  <strong>ROBOPROX WomenForum Grant (2026)</strong><br />
+			  	 Talk2Look: Neuromorphic system to guide the visual exploration through simple verbal commands. (Rayane Rocha,  under the supervision Dr. Giulia D'Angelo and Prof. Karla Štěpánová)
+				<a href="https://lnkd.in/p/dj2RPbwp" target="_blank" class="icon solid fa-link" title="Link" style="font-size: 0.8em;"></a>
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2025 Repubblica -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/repubblica.png" alt="Repubblica" />
+			<p>
+			  <strong>La Repubblica (2025)</strong><br />
+			  	La Repubblica (Italian Press) article: <em>"Beautiful Minds: Giulia D'Angelo, la scienziata che insegna ai computer a pensare con meno energia"</em>.
+				<a href="https://www.repubblica.it/tecnologia/2025/10/31/news/beautiful_minds_giulia_d_angelo_la_scienziata_che_insegna_ai_computer_a_pensare_con_meno_energia-424951376/" target="_blank" class="icon solid fa-link" title="Paper" style="font-size: 0.8em;"></a>
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2025 Rising Stars 2025 Award -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/risingstar2025.png" alt="NCE Rising Stars 2025" />
+			<p>
+			  <strong>NCE Rising Stars (2025)</strong><br />
+			  	IOP Publishing journal Neuromorphic Computing and Engineering is pleased to bring together the best early-career researchers in the field.
+				<a href="https://iopscience.iop.org/collections/nce-250303-783" target="_blank" class="icon solid fa-link" title="Link to the collection" style="font-size: 0.8em;"></a>
+				Article: <em>"Wandering around: A bioinspired approach to visual attention through object motion sensitivity"</em>.
+				<a href="https://www.doi.org/10.1088/2634-4386/addc90" target="_blank" class="icon solid fa-link" title="Paper" style="font-size: 0.8em;"></a>
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2025 Tecnovisionarie® Award -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/DAngelo_02.jpg" alt="Tecnovisionarie Award 2025" />
+			<p>
+			  <strong>2025 Tecnovisionarie® International Award</strong><br />
+			  Celebrating women under 40 leading innovation in AI, new materials, space, energy, environment, health, and biotech.
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2025 Nature Communications Editors’ Highlights -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<a href="https://www.nature.com/collections/hjhbgijcei" target="_blank">
+			  <img src="../images/nature.png" alt="Nature Communications Highlight" />
+			</a>
+			<p>
+			  <strong>2025 Nature Communications Editors’ Highlights</strong><br />
+			  <em>"Event-Driven Figure-Ground Organisation model for the humanoid robot iCub"</em>
+				<a href="https://doi.org/10.1038/s41467-025-56904-9" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size: 0.8em;"></a>
+				<br />
+				Top 50 paper in Applied Physics & Mathematics, Nature Communications.
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2024 MSCA Fellowship -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/msca.png" alt="Marie Curie Fellowship" />
+			<p>
+			  <strong>(2024-2026) European Marie Skłodowska-Curie Actions Award</strong><br />
+			  Grant: Postdoctoral Fellowship – <em>ENDEAVOR (EveNt DrivEn Active Vision for Object peRception)</em>.
+			  <a href="grants.html" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size: 0.8em;"></a>
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2023 Best Oral Presentation Women in Vision UK -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/bestoralpre.png" alt="Women in Vision UK" />
+			<p>
+			  <strong>2023 Best Oral Presentation</strong><br />
+			  Women in Vision UK, University of Cambridge, Winter Meeting.
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2023 President's Doctoral Scholar Award -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+				<iframe width="100%" height="315" src="https://www.youtube.com/embed/r5e4VtvUmCc?si=L8jdOd3L9LfKkaDy"
+						title="President's Doctoral Scholar Award" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen>
+				</iframe>
+			<p>
+			  <strong>2023 President's Doctoral Scholar Award</strong><br />
+			  University of Manchester’s highest accolade for academic excellence and leadership.
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2022 FameLab -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame" style="display: flex; flex-wrap: wrap; gap: 1em; align-items: flex-start; width: 100%;">
+
+			<!-- Left side: Image -->
+			<div style="flex: 0 0 48%; max-width: 48%;">
+			  <div style="display: flex; flex-wrap: wrap; gap: 0.5em; margin-bottom: 1em;">
+				  <img src="../images/famelab.jpg" alt="FameLab National Finalist" style="width: 60%; height: auto; border-radius: 12px;" />
+				  <img src="../images/famelabgenova.jpg" alt="FameLab National Finalist" style="width: 80%; height: auto; border-radius: 12px;" />
+			  </div>
+			</div>
+
+			<!-- Right side: Videos and description -->
+			<div style="flex: 0 0 48%; max-width: 48%;">
+			  <div style="display: flex; flex-wrap: wrap; gap: 0.5em; margin-bottom: 1em;">
+				<iframe width="100%" height="157" src="https://www.youtube.com/embed/dfmK9MRU4is?si=FrM7NnYyXntx8TB5"
+				  title="FameLab Video 1" frameborder="0"
+				  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+				  allowfullscreen>
+				</iframe>
+				<iframe width="100%" height="157" src="https://www.youtube.com/embed/C-wk8ezcb7M?si=lMZf75scD9VKOqPs"
+				  title="FameLab Video 2" frameborder="0"
+				  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+				  allowfullscreen>
+				</iframe>
+			  </div>
+			</div>
+		   <p><strong>2022 FameLab National Finalist</strong><br />
+				3 minute science speech at the FameLab National Final.
+			  </p>
+		  </div>
+
+		  <!-- Optional: Add this inside a <style> block or CSS file for responsiveness -->
+		  <style>
+			@media (max-width: 768px) {
+			  .image-frame > div {
+				flex: 0 0 50% !important;
+				max-width: 50% !important;
+			  }
+			}
+		  </style>
+		</article>
+
+
+		<!-- 2022 NEUROTECH EU Fellowship -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<img src="../images/capocaccia.png" alt="Neurotech EU Fellowship" />
+			<p>
+			  <strong>2022 NEUROTECH EU Fellowship</strong><br />
+			  Fellowship to attend the Neuromorphic Computing Workshop Capocaccia 2022.
+			</p>
+		  </div>
+		</article>
+
+		<!-- 2019 HiPEAC Collaboration Grant -->
+		<article class="col-6 col-12-mobile special">
+		  <div class="image-frame">
+			<a href="https://doi.org/10.1088/2634-4386/ac6b50" target="_blank">
+			  <img src="../images/hipeac.png" alt="HiPEAC Collaboration" />
+			</a>
+			<p>
+			  <strong>2019 HiPEAC EU Collaboration Grant</strong><br />
+			  	3 months collaboration grant with Adam Perrett from The University of Manchester, finalised with publication: <em>“Event-driven bio-inspired attentive system for iCub humanoid robot on SpiNNaker”</em>.
+				<a href="https://doi.org/10.1088/2634-4386/ac6b50" target="_blank" class="icon solid fa-link" title="Read the publication" style="font-size: 0.8em;"></a>
+			</p>
+		  </div>
+		</article>
 
         </div>
       </div>
@@ -420,7 +432,7 @@
             <section class="contact">
               <header>
                 <h3>Giulia D'Angelo</h3>
-                <h4><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b5c524e57525a155f5a555c5e57547b5d5e5715584d4e4f155841">[email&#160;protected]</a></h4>
+                <h4>giulia.dangelo@fel.cvut.cz</h4>
               </header>
               <ul class="icons">
                 <li><a href="https://www.linkedin.com/in/giuliadangelo/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">Linkedin</span></a></li>
@@ -436,47 +448,7 @@
 
   </div>
 
-  <!-- Scripts: tooltip positioning and accessibility -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    (function () {
-      // Auto-detect which grant cards are in bottom rows and adjust tooltip positioning
-      function adjustTooltipPositioning() {
-        const grantCards = document.querySelectorAll('.grant-card');
-        const viewportHeight = window.innerHeight;
-
-        grantCards.forEach(card => {
-          const rect = card.getBoundingClientRect();
-          const cardBottom = rect.bottom;
-
-          // If card is in bottom half of visible area, show tooltip below
-          if (cardBottom > viewportHeight * 0.6) {
-            card.classList.add('bottom-row');
-          } else {
-            card.classList.remove('bottom-row');
-          }
-        });
-      }
-
-      // Run on page load and resize
-      document.addEventListener('DOMContentLoaded', adjustTooltipPositioning);
-      window.addEventListener('resize', adjustTooltipPositioning);
-      window.addEventListener('scroll', adjustTooltipPositioning);
-
-      // Accessibility: update aria-expanded on focus/blur
-      document.addEventListener('DOMContentLoaded', function () {
-        const cards = document.querySelectorAll('.grant-card');
-        cards.forEach(function (card) {
-          card.addEventListener('focusin', function () {
-            card.setAttribute('aria-expanded', 'true');
-          });
-          card.addEventListener('focusout', function () {
-            card.setAttribute('aria-expanded', 'false');
-          });
-        });
-      });
-    })();
-  </script>
-
+  <!-- Scripts -->
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/jquery.dropotron.min.js"></script>
   <script src="../assets/js/jquery.scrolly.min.js"></script>
@@ -485,5 +457,6 @@
   <script src="../assets/js/breakpoints.min.js"></script>
   <script src="../assets/js/util.js"></script>
   <script src="../assets/js/main.js"></script>
+
 </body>
 </html>
